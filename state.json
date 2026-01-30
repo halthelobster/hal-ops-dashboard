@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-30T11:32:58.223Z",
+  "lastUpdated": "2026-01-30T11:33:57.156Z",
   "health": {
     "crons": {
       "healthy": 19,
@@ -7,7 +7,7 @@
       "status": "warning"
     },
     "agents": {
-      "active": 1,
+      "active": 2,
       "idle": 0,
       "status": "ok"
     },
@@ -73,14 +73,14 @@
   "crons": [
     {
       "name": "yen-intervention-watch",
-      "schedule": "in 9m",
+      "schedule": "in 8m",
       "health": "ok",
       "lastRun": "4h ago",
       "error": null
     },
     {
       "name": "auto-commit-workspace",
-      "schedule": "in 27m",
+      "schedule": "in 26m",
       "health": "ok",
       "lastRun": "2h ago",
       "error": null
@@ -256,5 +256,30 @@
     "openLoops": 7,
     "cronJobsTotal": 20
   },
-  "agents": []
+  "agents": [
+    {
+      "key": "agent:main:main",
+      "name": "Main session",
+      "type": "main",
+      "age": "2m",
+      "tokenUsage": {
+        "used": "26k",
+        "total": "200k",
+        "percent": 13
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:af3c1195-bcd5-4914-be88-0f7ebac454c0",
+      "name": "af3c1195-bcd5-4914-b",
+      "type": "subagent",
+      "age": "3m",
+      "tokenUsage": {
+        "used": "57k",
+        "total": "200k",
+        "percent": 28
+      },
+      "isActive": true
+    }
+  ]
 }
