@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0d1117">
   <title>Hal's Command Center | Hal Labs</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -893,48 +896,437 @@
       transform: translateX(4px);
     }
     
-    /* Mobile Responsive Improvements */
-    @media (max-width: 600px) {
-      .container { padding: 16px; }
+    /* =========================== */
+    /* MOBILE RESPONSIVE - COMPLETE */
+    /* =========================== */
+    
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 10px;
+    }
+    
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 1px;
+      transition: all 0.3s;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Mobile command button (replaces Cmd+K hint) */
+    .mobile-cmd-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border: none;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Pull to refresh indicator */
+    .pull-indicator {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 0 0 12px 12px;
+      padding: 12px 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .pull-indicator.visible {
+      opacity: 1;
+    }
+    
+    /* Tablet breakpoint - 768px */
+    @media (max-width: 768px) {
+      .container { padding: 20px 16px; }
       
-      h1 { font-size: 22px; }
-      h1 .logo { font-size: 26px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .health-grid { grid-template-columns: repeat(2, 1fr); }
+      
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .goal-card.expanded {
+        grid-column: 1;
+      }
+      
+      #rocks-list {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .cron-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    /* Large phone breakpoint - 600px */
+    @media (max-width: 600px) {
+      .container { padding: 16px 12px; }
+      
+      /* Header */
+      h1 { font-size: 20px; }
+      h1 .logo { font-size: 24px; }
       
       .header-top {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
         gap: 12px;
       }
       
       .header-right {
-        width: 100%;
-        justify-content: space-between;
+        width: auto;
+        flex: 1;
+        justify-content: flex-end;
+        gap: 8px;
       }
       
       .cmd-hint { display: none; }
+      .mobile-cmd-btn { display: flex; }
+      .hamburger { display: flex; }
       
-      .tabs { overflow-x: auto; }
-      .tab { padding: 10px 16px; font-size: 13px; }
+      .last-updated {
+        display: none;
+      }
+      
+      /* Mobile tabs - collapsible */
+      .tabs {
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        gap: 0;
+        border-bottom: none;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        margin-top: 12px;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+      
+      .tabs.open {
+        max-height: 200px;
+        border: 1px solid var(--border);
+        padding: 8px;
+      }
+      
+      .tab {
+        padding: 14px 16px;
+        border-bottom: none;
+        border-radius: 6px;
+        margin-bottom: 0;
+        min-height: 48px;
+      }
+      
+      .tab.active {
+        background: var(--bg-tertiary);
+        border-bottom: none;
+      }
+      
+      /* Cards */
+      .card { padding: 16px; }
+      .card-title { font-size: 15px; }
+      
+      /* Touch-friendly buttons - 44px minimum */
+      .btn {
+        min-height: 48px;
+        padding: 12px 20px;
+        font-size: 15px;
+        width: 100%;
+      }
       
       .approval-actions {
         flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
       }
       
-      .btn { width: 100%; }
+      /* Need items */
+      .need-item {
+        padding: 14px;
+      }
       
-      .command-palette { width: 95vw; }
+      .need-item h4 { font-size: 14px; }
+      .need-item p { font-size: 13px; }
+      
+      /* Health grid */
+      .health-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .health-item { padding: 12px; }
+      .health-value { font-size: 22px; }
+      .health-label { font-size: 11px; }
+      
+      /* Stats */
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .stat-card { padding: 16px; }
+      .stat-value { font-size: 28px; }
+      .stat-label { font-size: 12px; }
+      
+      /* Cron grid */
+      .cron-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      
+      .cron-item {
+        padding: 12px;
+        min-height: 44px;
+      }
+      
+      /* Work items */
+      .work-item {
+        padding: 14px 0;
+      }
+      
+      .work-title { font-size: 13px; }
+      .work-project { font-size: 11px; }
+      
+      /* Goals */
+      .goal-card { padding: 18px; }
+      .goal-emoji { font-size: 28px; }
+      .goal-name { font-size: 16px; }
+      .goal-target { font-size: 12px; }
+      
+      .goal-next-action {
+        padding: 14px;
+      }
+      
+      /* Milestones */
+      .milestone-item {
+        padding: 12px 0;
+      }
+      
+      .milestone-check {
+        width: 24px;
+        height: 24px;
+      }
+      
+      /* North star */
+      .north-star { padding: 24px 16px; }
+      .north-star-icon { font-size: 36px; }
+      .north-star-vision { font-size: 18px; }
+      .north-star-tagline { font-size: 14px; }
+      
+      /* Command palette */
+      .command-overlay {
+        padding-top: 10vh;
+        align-items: flex-start;
+      }
+      
+      .command-palette {
+        width: calc(100vw - 24px);
+        max-width: none;
+        margin: 0 12px;
+      }
+      
+      .command-input {
+        font-size: 16px; /* Prevents iOS zoom */
+        padding: 4px 0;
+      }
+      
+      .command-hint-text {
+        font-size: 12px;
+        padding: 12px;
+      }
+      
+      /* Toast */
+      #toast-container {
+        left: 12px;
+        right: 12px;
+        bottom: 90px;
+      }
+      
+      .toast {
+        font-size: 14px;
+        padding: 14px 16px;
+      }
+      
+      /* Chat button */
+      .chat-button {
+        width: 52px;
+        height: 52px;
+        bottom: 20px;
+        right: 16px;
+      }
+      
+      /* Footer */
+      footer {
+        font-size: 12px;
+        padding-top: 20px;
+        margin-top: 24px;
+      }
+      
+      /* Weekly scorecard */
+      #scorecard-metrics > div {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+        padding: 12px 0 !important;
+      }
+      
+      #scorecard-metrics > div > div {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+    
+    /* iPhone SE / small phone - 375px */
+    @media (max-width: 375px) {
+      .container { padding: 12px 10px; }
+      
+      h1 { font-size: 18px; }
+      h1 .logo { font-size: 22px; }
+      
+      .card { padding: 14px; }
+      
+      .health-value { font-size: 20px; }
+      
+      .stat-value { font-size: 24px; }
+      
+      .goal-emoji { font-size: 24px; }
+      .goal-name { font-size: 15px; }
+      
+      .btn {
+        padding: 14px 16px;
+        font-size: 14px;
+      }
+      
+      .need-item h4 { font-size: 13px; }
+      
+      .north-star-vision { font-size: 16px; }
+    }
+    
+    /* Very small phone - 320px */
+    @media (max-width: 320px) {
+      .container { padding: 10px 8px; }
+      
+      h1 { font-size: 16px; }
+      h1 .logo { font-size: 20px; }
+      
+      .card { padding: 12px; }
+      
+      .health-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      
+      .health-value { font-size: 18px; }
+      .health-label { font-size: 10px; }
+      
+      .goal-header {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      
+      .goal-status {
+        font-size: 10px;
+        padding: 3px 8px;
+      }
+    }
+    
+    /* Landscape phone - prevent horizontal scroll */
+    @media (max-width: 900px) and (orientation: landscape) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .needs-jordan,
+      #approval-queue,
+      .stats-row,
+      .goals-grid {
+        grid-column: 1 / -1;
+      }
+    }
+    
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .btn:hover {
+        transform: none;
+      }
+      
+      .approval-item:hover {
+        transform: none;
+      }
+      
+      .goal-card:hover {
+        transform: none;
+        border-color: var(--border);
+      }
+      
+      /* Larger tap targets */
+      .tab {
+        min-height: 48px;
+      }
+      
+      .work-item {
+        min-height: 48px;
+      }
+      
+      .cron-item {
+        min-height: 48px;
+      }
+    }
+    
+    /* Safe area for notched phones */
+    @supports (padding: max(0px)) {
+      .container {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+      }
+      
+      .chat-button {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(16px, env(safe-area-inset-right));
+      }
       
       #toast-container {
-        left: 16px;
-        right: 16px;
-        bottom: 80px;
+        bottom: calc(90px + env(safe-area-inset-bottom));
       }
-      
-      .toast { font-size: 13px; }
     }
   </style>
 </head>
 <body>
+  <!-- Pull to refresh indicator -->
+  <div class="pull-indicator" id="pull-indicator">↓ Pull to refresh</div>
+  
   <div class="container">
     <header>
       <div class="header-top">
@@ -943,7 +1335,15 @@
           <div class="cmd-hint" onclick="openCommandPalette()">
             <kbd>Cmd+K</kbd> Command Hal
           </div>
+          <button class="mobile-cmd-btn" onclick="openCommandPalette()" title="Command Hal">
+            💬
+          </button>
           <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 4:23 AM</div>
+          <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
       <div class="tabs">
@@ -2052,6 +2452,90 @@
     });
     
     // =============================================================================
+    // Mobile Menu Toggle
+    // =============================================================================
+    
+    function toggleMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const tabs = document.querySelector('.tabs');
+      
+      hamburger.classList.toggle('active');
+      tabs.classList.toggle('open');
+    }
+    
+    // Close menu when tab is clicked (mobile)
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const hamburger = document.getElementById('hamburger');
+        const tabs = document.querySelector('.tabs');
+        
+        if (window.innerWidth <= 600) {
+          hamburger.classList.remove('active');
+          tabs.classList.remove('open');
+        }
+      });
+    });
+    
+    // =============================================================================
+    // Pull to Refresh (Touch devices)
+    // =============================================================================
+    
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let isPulling = false;
+    
+    function initPullToRefresh() {
+      const indicator = document.getElementById('pull-indicator');
+      
+      document.addEventListener('touchstart', (e) => {
+        if (window.scrollY === 0) {
+          touchStartY = e.touches[0].clientY;
+          isPulling = true;
+        }
+      }, { passive: true });
+      
+      document.addEventListener('touchmove', (e) => {
+        if (!isPulling) return;
+        
+        touchEndY = e.touches[0].clientY;
+        const pullDistance = touchEndY - touchStartY;
+        
+        if (pullDistance > 50 && window.scrollY === 0) {
+          indicator.style.display = 'block';
+          indicator.classList.add('visible');
+          indicator.textContent = pullDistance > 100 ? '↻ Release to refresh' : '↓ Pull to refresh';
+        }
+      }, { passive: true });
+      
+      document.addEventListener('touchend', () => {
+        if (!isPulling) return;
+        
+        const pullDistance = touchEndY - touchStartY;
+        const indicator = document.getElementById('pull-indicator');
+        
+        if (pullDistance > 100 && window.scrollY === 0) {
+          indicator.textContent = '⟳ Refreshing...';
+          fetchUpdates().then(() => {
+            showToast('Dashboard refreshed ✓', 'success');
+            indicator.classList.remove('visible');
+            setTimeout(() => {
+              indicator.style.display = 'none';
+            }, 300);
+          });
+        } else {
+          indicator.classList.remove('visible');
+          setTimeout(() => {
+            indicator.style.display = 'none';
+          }, 300);
+        }
+        
+        isPulling = false;
+        touchStartY = 0;
+        touchEndY = 0;
+      }, { passive: true });
+    }
+    
+    // =============================================================================
     // Initialize
     // =============================================================================
     
@@ -2064,6 +2548,11 @@
       
       // Update timestamp immediately
       updateLastUpdated();
+      
+      // Initialize pull-to-refresh for mobile
+      if ('ontouchstart' in window) {
+        initPullToRefresh();
+      }
       
       // Start polling as backup (will be active if WS disconnects)
       setTimeout(() => {
