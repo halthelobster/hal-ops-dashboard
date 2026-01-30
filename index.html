@@ -20,6 +20,7 @@
       --accent-green: #3fb950;
       --accent-blue: #58a6ff;
       --accent-purple: #a371f7;
+      --accent-pink: #db61a2;
     }
     
     body {
@@ -36,13 +37,17 @@
       padding: 24px;
     }
     
+    /* Header with Tabs */
     header {
+      margin-bottom: 32px;
+      padding-bottom: 0;
+    }
+    
+    .header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
     }
     
     h1 {
@@ -55,15 +60,81 @@
     
     h1 .logo { font-size: 32px; }
     
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
     .last-updated {
       color: var(--text-secondary);
       font-size: 14px;
     }
     
+    .cmd-hint {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .cmd-hint:hover {
+      background: var(--bg-secondary);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+    
+    .cmd-hint kbd {
+      background: var(--bg-primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .tab {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .tab:hover { color: var(--text-primary); }
+    
+    .tab.active {
+      color: var(--accent-blue);
+      border-bottom-color: var(--accent-blue);
+    }
+    
+    .tab-icon { font-size: 16px; }
+    
+    /* Views */
+    .view { display: none; }
+    .view.active { display: block; }
+    
+    /* Common Card Styles */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+      margin-top: 24px;
     }
     
     @media (max-width: 900px) {
@@ -104,8 +175,12 @@
     
     .badge.green { background: var(--accent-green); }
     .badge.orange { background: var(--accent-orange); }
+    .badge.blue { background: var(--accent-blue); }
     
-    /* Needs Jordan Section - PROMINENT */
+    /* ==================== */
+    /* OPERATIONS VIEW */
+    /* ==================== */
+    
     .needs-jordan {
       grid-column: 1 / -1;
       background: linear-gradient(135deg, #1a0a0a 0%, var(--bg-secondary) 100%);
@@ -137,9 +212,6 @@
       color: var(--text-muted);
     }
     
-    .need-meta span { display: flex; align-items: center; gap: 4px; }
-    
-    /* Health Dashboard */
     .health-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -170,7 +242,6 @@
       letter-spacing: 0.5px;
     }
     
-    /* Active Work */
     .work-item {
       display: flex;
       align-items: center;
@@ -188,11 +259,7 @@
       flex-shrink: 0;
     }
     
-    .work-status.running {
-      background: var(--accent-green);
-      animation: pulse 2s infinite;
-    }
-    
+    .work-status.running { background: var(--accent-green); animation: pulse 2s infinite; }
     .work-status.waiting { background: var(--accent-orange); }
     .work-status.blocked { background: var(--accent-red); }
     
@@ -219,7 +286,6 @@
       border-radius: 3px;
     }
     
-    /* Upcoming */
     .upcoming-item {
       display: flex;
       justify-content: space-between;
@@ -233,17 +299,11 @@
     .upcoming-project { font-size: 12px; color: var(--text-muted); }
     .upcoming-date { text-align: right; }
     
-    .upcoming-days {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--accent-blue);
-    }
-    
+    .upcoming-days { font-size: 18px; font-weight: 600; color: var(--accent-blue); }
     .upcoming-days.soon { color: var(--accent-orange); }
     .upcoming-days.urgent { color: var(--accent-red); }
     .upcoming-label { font-size: 11px; color: var(--text-muted); }
     
-    /* Cron Jobs */
     .cron-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -260,29 +320,13 @@
       font-size: 13px;
     }
     
-    .cron-health {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    
+    .cron-health { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .cron-health.ok { background: var(--accent-green); }
     .cron-health.error { background: var(--accent-red); }
     
-    .cron-name {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .cron-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cron-schedule { color: var(--text-muted); font-size: 11px; }
     
-    .cron-schedule {
-      color: var(--text-muted);
-      font-size: 11px;
-    }
-    
-    /* Projects */
     .project-item { margin-bottom: 16px; }
     .project-item:last-child { margin-bottom: 0; }
     
@@ -305,7 +349,6 @@
     .project-status.active { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
     .project-status.review { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
     .project-status.backlog { background: rgba(139, 148, 158, 0.2); color: var(--text-secondary); }
-    .project-status.maintenance { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
     
     .project-progress {
       height: 8px;
@@ -320,7 +363,6 @@
       border-radius: 4px;
     }
     
-    /* Stats Row */
     .stats-row {
       grid-column: 1 / -1;
       display: grid;
@@ -341,16 +383,352 @@
       text-align: center;
     }
     
-    .stat-value {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--accent-blue);
+    .stat-value { font-size: 36px; font-weight: 700; color: var(--accent-blue); }
+    .stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+    
+    /* ==================== */
+    /* LIFE OS VIEW */
+    /* ==================== */
+    
+    .north-star {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 50%, #0d1117 100%);
+      border: 2px solid var(--accent-purple);
+      text-align: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
     }
     
-    .stat-label {
+    .north-star::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(163, 113, 247, 0.1) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .north-star-content { position: relative; z-index: 1; }
+    
+    .north-star-icon { font-size: 48px; margin-bottom: 16px; }
+    
+    .north-star-vision {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .north-star-tagline {
+      font-size: 16px;
+      color: var(--accent-purple);
+      font-style: italic;
+    }
+    
+    .north-star-horizon {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    /* Goal Cards */
+    .goals-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .goal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .goal-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    .goal-card.expanded {
+      grid-column: 1 / -1;
+    }
+    
+    .goal-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .goal-emoji { font-size: 32px; }
+    
+    .goal-info { flex: 1; }
+    
+    .goal-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .goal-target {
       font-size: 13px;
       color: var(--text-secondary);
+    }
+    
+    .goal-status {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    
+    .goal-status.on-track { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+    .goal-status.needs-attention { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+    .goal-status.at-risk { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
+    
+    .goal-progress-container { margin-bottom: 16px; }
+    
+    .goal-progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    
+    .goal-progress-label { color: var(--text-secondary); }
+    .goal-progress-value { color: var(--accent-blue); font-weight: 600; }
+    
+    .goal-progress-bar {
+      height: 8px;
+      background: var(--bg-primary);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .goal-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    .goal-progress-fill.income { background: linear-gradient(90deg, #d29922, #3fb950); }
+    .goal-progress-fill.body { background: linear-gradient(90deg, #f85149, #d29922); }
+    .goal-progress-fill.love { background: linear-gradient(90deg, #db61a2, #f85149); }
+    .goal-progress-fill.freedom { background: linear-gradient(90deg, #58a6ff, #a371f7); }
+    .goal-progress-fill.joy { background: linear-gradient(90deg, #a371f7, #db61a2); }
+    
+    .goal-next-action {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    
+    .goal-next-label {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    
+    .goal-next-text { color: var(--text-primary); }
+    
+    /* Expanded Goal Details */
+    .goal-details {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .goal-card.expanded .goal-details { display: block; }
+    
+    .goal-section { margin-bottom: 20px; }
+    .goal-section:last-child { margin-bottom: 0; }
+    
+    .goal-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    
+    .milestone-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .milestone-item:last-child { border-bottom: none; }
+    
+    .milestone-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .milestone-check.done {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+    
+    .milestone-check.done::after { content: '✓'; color: white; font-size: 12px; }
+    
+    .milestone-info { flex: 1; }
+    .milestone-name { font-size: 14px; }
+    .milestone-name.done { color: var(--text-muted); text-decoration: line-through; }
+    
+    .milestone-meta {
+      display: flex;
+      gap: 12px;
       margin-top: 4px;
+    }
+    
+    .milestone-target {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .milestone-progress-small {
+      width: 60px;
+      height: 4px;
+      background: var(--bg-primary);
+      border-radius: 2px;
+    }
+    
+    .milestone-progress-fill {
+      height: 100%;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+    
+    .project-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 4px;
+      font-size: 13px;
+    }
+    
+    .project-chip-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .project-chip-status.active { background: var(--accent-green); }
+    .project-chip-status.stalled { background: var(--accent-orange); }
+    .project-chip-status.planned { background: var(--text-muted); }
+    
+    .project-chip-leverage {
+      font-size: 10px;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+    }
+    
+    /* Command Palette */
+    .command-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+    
+    .command-overlay.active { display: flex; }
+    
+    .command-palette {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 600px;
+      max-width: 90vw;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .command-input-wrapper {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .command-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: var(--text-primary);
+      outline: none;
+    }
+    
+    .command-input::placeholder { color: var(--text-muted); }
+    
+    .command-hint-text {
+      padding: 16px;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    
+    .command-hint-text kbd {
+      background: var(--bg-tertiary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 0 4px;
+    }
+    
+    /* Chat Button */
+    .chat-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 20px rgba(88, 166, 255, 0.4);
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    
+    .chat-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(88, 166, 255, 0.6);
     }
     
     footer {
@@ -361,257 +739,491 @@
       color: var(--text-muted);
       font-size: 13px;
     }
+    
+    footer a { color: var(--accent-blue); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1><span class="logo">🦞</span> Hal's Operations Center</h1>
-      <div class="last-updated">Last updated: Jan 29, 2026 7:48 PM</div>
+      <div class="header-top">
+        <h1><span class="logo">🦞</span> Hal's Operations Center</h1>
+        <div class="header-right">
+          <div class="cmd-hint" onclick="openCommandPalette()">
+            <kbd>Cmd+K</kbd> Command Hal
+          </div>
+          <div class="last-updated">Updated: Jan 29, 2026 8:25 PM</div>
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" data-view="operations">
+          <span class="tab-icon">⚡</span> Operations
+        </div>
+        <div class="tab" data-view="lifeos">
+          <span class="tab-icon">🌟</span> Life OS
+        </div>
+      </div>
     </header>
     
-    <div class="grid">
-      <!-- NEEDS JORDAN -->
-      <div class="card needs-jordan">
-        <div class="card-header">
-          <div class="card-title">🔴 NEEDS YOU</div>
-          <span class="badge">3</span>
-        </div>
-        <div class="need-item">
-          <h4>Fix Gmail API Access</h4>
-          <p>Domain-wide delegation scopes may have been removed. Need to check Admin Console tomorrow.</p>
-          <div class="need-meta">
-            <span>📁 AI Stack & Tools</span>
-            <span>🏷️ blocker</span>
-            <span>⚡ P1</span>
+    <!-- OPERATIONS VIEW -->
+    <div id="operations" class="view active">
+      <div class="grid">
+        <div class="card needs-jordan">
+          <div class="card-header">
+            <div class="card-title">🔴 NEEDS YOU</div>
+            <span class="badge">3</span>
+          </div>
+          <div class="need-item">
+            <h4>Fix Gmail API Access</h4>
+            <p>Domain-wide delegation scopes may have been removed. Check Admin Console.</p>
+            <div class="need-meta">
+              <span>📁 AI Stack</span>
+              <span>⚡ P1</span>
+            </div>
+          </div>
+          <div class="need-item">
+            <h4>Review & Submit SaaStr Application</h4>
+            <p>Draft ready at notes/projects/saastr-submission/</p>
+            <div class="need-meta">
+              <span>📁 Speaking</span>
+              <span>⚡ P2</span>
+            </div>
+          </div>
+          <div class="need-item">
+            <h4>Review Positioning Sub-Agent Output</h4>
+            <p>Comprehensive docs ready in notes/projects/positioning-council/</p>
+            <div class="need-meta">
+              <span>📁 Website</span>
+              <span>⚡ P2</span>
+            </div>
           </div>
         </div>
-        <div class="need-item">
-          <h4>Review & Submit SaaStr Application</h4>
-          <p>Draft ready at notes/projects/saastr-submission/. Three talk options written.</p>
-          <div class="need-meta">
-            <span>📁 Speaking Circuit</span>
-            <span>🏷️ approval</span>
-            <span>⚡ P2</span>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📊 System Health</div>
+          </div>
+          <div class="health-grid">
+            <div class="health-item">
+              <div class="health-value orange">18/19</div>
+              <div class="health-label">Crons OK</div>
+            </div>
+            <div class="health-item">
+              <div class="health-value green">1</div>
+              <div class="health-label">Agents</div>
+            </div>
+            <div class="health-item">
+              <div class="health-value">5</div>
+              <div class="health-label">Tasks</div>
+            </div>
+            <div class="health-item">
+              <div class="health-value red">2</div>
+              <div class="health-label">Blocked</div>
+            </div>
           </div>
         </div>
-        <div class="need-item">
-          <h4>Review Positioning Sub-Agent Output</h4>
-          <p>Comprehensive positioning docs ready in notes/projects/positioning-council/</p>
-          <div class="need-meta">
-            <span>📁 Website & Positioning</span>
-            <span>🏷️ review</span>
-            <span>⚡ P2</span>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🏃 Active Work</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status waiting"></div>
+            <div class="work-info">
+              <div class="work-title">LinkedIn Day 1 - Awaiting Feedback</div>
+              <div class="work-project">LinkedIn Challenge</div>
+            </div>
+            <div class="work-progress"><div class="work-progress-bar" style="width: 60%"></div></div>
+          </div>
+          <div class="work-item">
+            <div class="work-status waiting"></div>
+            <div class="work-info">
+              <div class="work-title">LinkedIn Chronic Pain - Awaiting</div>
+              <div class="work-project">LinkedIn Challenge</div>
+            </div>
+            <div class="work-progress"><div class="work-progress-bar" style="width: 70%"></div></div>
+          </div>
+          <div class="work-item">
+            <div class="work-status running"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard + Life OS View</div>
+              <div class="work-project">Hal Operations</div>
+            </div>
+            <div class="work-progress"><div class="work-progress-bar" style="width: 95%"></div></div>
           </div>
         </div>
-      </div>
-      
-      <!-- Health Dashboard -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">📊 System Health</div>
-        </div>
-        <div class="health-grid">
-          <div class="health-item">
-            <div class="health-value orange">18/19</div>
-            <div class="health-label">Crons Healthy</div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">⏰ Coming Up</div>
           </div>
-          <div class="health-item">
-            <div class="health-value green">1</div>
-            <div class="health-label">Agents Active</div>
+          <div class="upcoming-item">
+            <div>
+              <div class="upcoming-title">WBD Slides for David</div>
+              <div class="upcoming-project">Heads Up!</div>
+            </div>
+            <div class="upcoming-date">
+              <div class="upcoming-days urgent">0d</div>
+              <div class="upcoming-label">Tomorrow</div>
+            </div>
           </div>
-          <div class="health-item">
-            <div class="health-value">5</div>
-            <div class="health-label">Active Tasks</div>
+          <div class="upcoming-item">
+            <div>
+              <div class="upcoming-title">Blackman Family Visit</div>
+              <div class="upcoming-project">Personal</div>
+            </div>
+            <div class="upcoming-date">
+              <div class="upcoming-days">23d</div>
+              <div class="upcoming-label">Feb 21</div>
+            </div>
           </div>
-          <div class="health-item">
-            <div class="health-value red">2</div>
-            <div class="health-label">Blocked</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Active Work -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">🏃 Active Work</div>
-        </div>
-        <div class="work-item">
-          <div class="work-status waiting"></div>
-          <div class="work-info">
-            <div class="work-title">LinkedIn Day 1 - Awaiting Victoria Feedback</div>
-            <div class="work-project">LinkedIn Challenge</div>
-          </div>
-          <div class="work-progress"><div class="work-progress-bar" style="width: 60%"></div></div>
-        </div>
-        <div class="work-item">
-          <div class="work-status waiting"></div>
-          <div class="work-info">
-            <div class="work-title">LinkedIn Chronic Pain - Awaiting Feedback</div>
-            <div class="work-project">LinkedIn Challenge</div>
-          </div>
-          <div class="work-progress"><div class="work-progress-bar" style="width: 70%"></div></div>
-        </div>
-        <div class="work-item">
-          <div class="work-status running"></div>
-          <div class="work-info">
-            <div class="work-title">Building Operations Center in Notion</div>
-            <div class="work-project">Hal Operations</div>
-          </div>
-          <div class="work-progress"><div class="work-progress-bar" style="width: 10%"></div></div>
-        </div>
-        <div class="work-item">
-          <div class="work-status running"></div>
-          <div class="work-info">
-            <div class="work-title">Building Custom Dashboard</div>
-            <div class="work-project">Hal Operations</div>
-          </div>
-          <div class="work-progress"><div class="work-progress-bar" style="width: 90%"></div></div>
-        </div>
-      </div>
-      
-      <!-- Upcoming -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">⏰ Coming Up</div>
-        </div>
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-title">Brighton Speaker Deadline</div>
-            <div class="upcoming-project">Speaking Circuit</div>
-          </div>
-          <div class="upcoming-date">
-            <div class="upcoming-days soon">13d</div>
-            <div class="upcoming-label">Feb 11</div>
+          <div class="upcoming-item">
+            <div>
+              <div class="upcoming-title">ChatGPT Plus Review</div>
+              <div class="upcoming-project">AI Stack</div>
+            </div>
+            <div class="upcoming-date">
+              <div class="upcoming-days">30d</div>
+              <div class="upcoming-label">Feb 28</div>
+            </div>
           </div>
         </div>
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-title">Blackman Family Visit</div>
-            <div class="upcoming-project">Personal</div>
+        
+        <div class="card" style="grid-column: 1 / -1;">
+          <div class="card-header">
+            <div class="card-title">🔄 Cron Jobs</div>
+            <span class="badge orange">18/19</span>
           </div>
-          <div class="upcoming-date">
-            <div class="upcoming-days">23d</div>
-            <div class="upcoming-label">Feb 21</div>
-          </div>
-        </div>
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-title">PGC San Francisco</div>
-            <div class="upcoming-project">Speaking Circuit</div>
-          </div>
-          <div class="upcoming-date">
-            <div class="upcoming-days">39d</div>
-            <div class="upcoming-label">Mar 9</div>
-          </div>
-        </div>
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-title">Nordic Game Deadline</div>
-            <div class="upcoming-project">Speaking Circuit</div>
-          </div>
-          <div class="upcoming-date">
-            <div class="upcoming-days">63d</div>
-            <div class="upcoming-label">Apr 2</div>
+          <div class="cron-grid">
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Review</span><span class="cron-schedule">8pm</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Auto-Commit</span><span class="cron-schedule">2h</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Yen Watch</span><span class="cron-schedule">3h</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Daily Ideas</span><span class="cron-schedule">9am</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Clawdbot Intel</span><span class="cron-schedule">11am</span></div>
+            <div class="cron-item"><div class="cron-health error"></div><span class="cron-name">LinkedIn PM</span><span class="cron-schedule">4pm</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Desktop Cleanup</span><span class="cron-schedule">5am</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Session Index</span><span class="cron-schedule">6am</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Playmaker Signals</span><span class="cron-schedule">Sun</span></div>
           </div>
         </div>
       </div>
-      
-      <!-- Projects -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">📁 Projects</div>
-        </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">LinkedIn 30-Day Challenge</span>
-            <span class="project-status active">active</span>
+    </div>
+    
+    <!-- LIFE OS VIEW -->
+    <div id="lifeos" class="view">
+      <div class="grid">
+        <div class="card north-star">
+          <div class="north-star-content">
+            <div class="north-star-icon">⛵</div>
+            <div class="north-star-vision">Live on a sailboat, circumnavigate the world</div>
+            <div class="north-star-tagline">$1M/year from anywhere. Freedom, not just wealth.</div>
+            <div class="north-star-horizon">Horizon: 1-3 years to launch</div>
           </div>
-          <div class="project-progress"><div class="project-progress-bar" style="width: 10%"></div></div>
         </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Speaking Circuit 2026</span>
-            <span class="project-status active">active</span>
+        
+        <div class="goals-grid">
+          <!-- Income Goal -->
+          <div class="goal-card" onclick="toggleGoal(this)">
+            <div class="goal-header">
+              <div class="goal-emoji">💰</div>
+              <div class="goal-info">
+                <div class="goal-name">Income</div>
+                <div class="goal-target">$1M/year location-independent</div>
+              </div>
+              <div class="goal-status on-track">On Track</div>
+            </div>
+            <div class="goal-progress-container">
+              <div class="goal-progress-header">
+                <span class="goal-progress-label">Progress to goal</span>
+                <span class="goal-progress-value">45%</span>
+              </div>
+              <div class="goal-progress-bar">
+                <div class="goal-progress-fill income" style="width: 45%"></div>
+              </div>
+            </div>
+            <div class="goal-next-action">
+              <div class="goal-next-label">Next Action</div>
+              <div class="goal-next-text">Finalize WBD slides for David Song</div>
+            </div>
+            <div class="goal-details">
+              <div class="goal-section">
+                <div class="goal-section-title">Milestones</div>
+                <div class="milestone-item">
+                  <div class="milestone-check done"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name done">Stable $300k/year</div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">Hit $500k/year</div>
+                    <div class="milestone-meta">
+                      <span class="milestone-target">Target: Q2 2026</span>
+                      <div class="milestone-progress-small"><div class="milestone-progress-fill" style="width: 60%"></div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">Reach $750k/year</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: Q4 2026</span></div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">$1M/year sustainable</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: 2027</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="goal-section">
+                <div class="goal-section-title">Connected Projects</div>
+                <div class="project-chip"><div class="project-chip-status active"></div>WBD/Heads Up!<span class="project-chip-leverage">high</span></div>
+                <div class="project-chip"><div class="project-chip-status active"></div>LinkedIn brand<span class="project-chip-leverage">high</span></div>
+                <div class="project-chip"><div class="project-chip-status active"></div>Speaking circuit<span class="project-chip-leverage">med</span></div>
+                <div class="project-chip"><div class="project-chip-status planned"></div>Advisory expansion<span class="project-chip-leverage">high</span></div>
+              </div>
+            </div>
           </div>
-          <div class="project-progress"><div class="project-progress-bar" style="width: 33%"></div></div>
-        </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Hal Operations</span>
-            <span class="project-status active">active</span>
+          
+          <!-- Body Goal -->
+          <div class="goal-card" onclick="toggleGoal(this)">
+            <div class="goal-header">
+              <div class="goal-emoji">💪</div>
+              <div class="goal-info">
+                <div class="goal-name">Body</div>
+                <div class="goal-target">Visible six-pack, strong, healthy</div>
+              </div>
+              <div class="goal-status needs-attention">Needs Attention</div>
+            </div>
+            <div class="goal-progress-container">
+              <div class="goal-progress-header">
+                <span class="goal-progress-label">Progress to goal</span>
+                <span class="goal-progress-value">40%</span>
+              </div>
+              <div class="goal-progress-bar">
+                <div class="goal-progress-fill body" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="goal-next-action">
+              <div class="goal-next-label">Next Action</div>
+              <div class="goal-next-text">Log today's workout and calories</div>
+            </div>
+            <div class="goal-details">
+              <div class="goal-section">
+                <div class="goal-section-title">Milestones</div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">Consistent routine (3x lift, 3x cardio)</div>
+                    <div class="milestone-meta"><div class="milestone-progress-small"><div class="milestone-progress-fill" style="width: 70%"></div></div></div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">15% body fat</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: Feb 2026</span></div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">12% body fat</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: Apr 2026</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="goal-section">
+                <div class="goal-section-title">Connected Projects</div>
+                <div class="project-chip"><div class="project-chip-status active"></div>Lift 3x/week</div>
+                <div class="project-chip"><div class="project-chip-status active"></div>Zone 2 cardio</div>
+                <div class="project-chip"><div class="project-chip-status active"></div>Calorie tracking</div>
+              </div>
+            </div>
           </div>
-          <div class="project-progress"><div class="project-progress-bar" style="width: 50%"></div></div>
-        </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Website & Positioning</span>
-            <span class="project-status review">review</span>
+          
+          <!-- Relationship Goal -->
+          <div class="goal-card" onclick="toggleGoal(this)">
+            <div class="goal-header">
+              <div class="goal-emoji">❤️</div>
+              <div class="goal-info">
+                <div class="goal-name">Relationship</div>
+                <div class="goal-target">Wonderful girlfriend for the journey</div>
+              </div>
+              <div class="goal-status needs-attention">Needs Attention</div>
+            </div>
+            <div class="goal-progress-container">
+              <div class="goal-progress-header">
+                <span class="goal-progress-label">Progress to goal</span>
+                <span class="goal-progress-value">15%</span>
+              </div>
+              <div class="goal-progress-bar">
+                <div class="goal-progress-fill love" style="width: 15%"></div>
+              </div>
+            </div>
+            <div class="goal-next-action">
+              <div class="goal-next-label">Next Action</div>
+              <div class="goal-next-text">Refresh dating profiles or plan social event</div>
+            </div>
           </div>
-          <div class="project-progress"><div class="project-progress-bar" style="width: 80%"></div></div>
-        </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Playmakers Guild</span>
-            <span class="project-status backlog">backlog</span>
+          
+          <!-- Freedom Goal -->
+          <div class="goal-card" onclick="toggleGoal(this)">
+            <div class="goal-header">
+              <div class="goal-emoji">⛵</div>
+              <div class="goal-info">
+                <div class="goal-name">Freedom</div>
+                <div class="goal-target">Location independence + sailboat ready</div>
+              </div>
+              <div class="goal-status on-track">On Track</div>
+            </div>
+            <div class="goal-progress-container">
+              <div class="goal-progress-header">
+                <span class="goal-progress-label">Progress to goal</span>
+                <span class="goal-progress-value">35%</span>
+              </div>
+              <div class="goal-progress-bar">
+                <div class="goal-progress-fill freedom" style="width: 35%"></div>
+              </div>
+            </div>
+            <div class="goal-next-action">
+              <div class="goal-next-label">Next Action</div>
+              <div class="goal-next-text">Book next sailing day</div>
+            </div>
+            <div class="goal-details">
+              <div class="goal-section">
+                <div class="goal-section-title">Milestones</div>
+                <div class="milestone-item">
+                  <div class="milestone-check done"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name done">ASA 104 certified</div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">Business runs without grinding</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: Q2 2026</span></div>
+                  </div>
+                </div>
+                <div class="milestone-item">
+                  <div class="milestone-check"></div>
+                  <div class="milestone-info">
+                    <div class="milestone-name">100+ hours sailing experience</div>
+                    <div class="milestone-meta"><span class="milestone-target">Target: 2026</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="project-progress"><div class="project-progress-bar" style="width: 10%"></div></div>
-        </div>
-      </div>
-      
-      <!-- Cron Jobs -->
-      <div class="card" style="grid-column: 1 / -1;">
-        <div class="card-header">
-          <div class="card-title">🔄 Cron Jobs</div>
-          <span class="badge orange">18/19 Healthy</span>
-        </div>
-        <div class="cron-grid">
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Daily Review</span><span class="cron-schedule">8pm</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Auto-Commit Workspace</span><span class="cron-schedule">2h</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Yen Intervention Watch</span><span class="cron-schedule">3h</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Daily Ideas</span><span class="cron-schedule">9am</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Clawdbot Intel</span><span class="cron-schedule">11am</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Sync (Noon)</span><span class="cron-schedule">12pm</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Sync (6pm)</span><span class="cron-schedule">6pm</span></div>
-          <div class="cron-item"><div class="cron-health error"></div><span class="cron-name">LinkedIn Challenge PM</span><span class="cron-schedule">4pm</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Desktop Cleanup</span><span class="cron-schedule">5am</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Session Search Index</span><span class="cron-schedule">6am</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 60m</span><span class="cron-schedule">11:15p</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 45m</span><span class="cron-schedule">11:30p</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 30m</span><span class="cron-schedule">11:45p</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 15m</span><span class="cron-schedule">12am</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Lights Out</span><span class="cron-schedule">12:15a</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Playmaker Signals</span><span class="cron-schedule">Sun</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Slack Team Review</span><span class="cron-schedule">Feb 9</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">WBD Slides Reminder</span><span class="cron-schedule">Jan 30</span></div>
-          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">ChatGPT Plus Review</span><span class="cron-schedule">Feb 28</span></div>
-        </div>
-      </div>
-      
-      <!-- Stats Row -->
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-value">12</div>
-          <div class="stat-label">Completed This Week</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">23</div>
-          <div class="stat-label">Ideas in Backlog</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">7</div>
-          <div class="stat-label">Open Loops</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">19</div>
-          <div class="stat-label">Cron Jobs</div>
+          
+          <!-- Joy Goal -->
+          <div class="goal-card" onclick="toggleGoal(this)">
+            <div class="goal-header">
+              <div class="goal-emoji">🌟</div>
+              <div class="goal-info">
+                <div class="goal-name">Life Quality</div>
+                <div class="goal-target">Time for adventure, Bonnie, and joy</div>
+              </div>
+              <div class="goal-status on-track">On Track</div>
+            </div>
+            <div class="goal-progress-container">
+              <div class="goal-progress-header">
+                <span class="goal-progress-label">Progress to goal</span>
+                <span class="goal-progress-value">60%</span>
+              </div>
+              <div class="goal-progress-bar">
+                <div class="goal-progress-fill joy" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="goal-next-action">
+              <div class="goal-next-label">Next Action</div>
+              <div class="goal-next-text">Enjoy the journey 🐕</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     
     <footer>
-      Built by Hal 9001 🦞 • Data refreshes on heartbeats • Open: <code>file:///Users/Hal/clawd/dashboard/index.html</code>
+      Built by Hal 9001 🦞 • <a href="https://t.me/ClawdbotBot" target="_blank">Message Hal on Telegram</a> • Data refreshes on heartbeats
     </footer>
   </div>
+  
+  <!-- Command Palette -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-palette">
+      <div class="command-input-wrapper">
+        <input type="text" class="command-input" id="commandInput" placeholder="Ask Hal anything..." autofocus>
+      </div>
+      <div class="command-hint-text">
+        Commands are saved and processed during the next heartbeat.<br>
+        Press <kbd>Esc</kbd> to close or <kbd>Enter</kbd> to send.
+      </div>
+    </div>
+  </div>
+  
+  <!-- Chat Button -->
+  <a href="https://t.me/ClawdbotBot" target="_blank" class="chat-button" title="Message Hal">
+    💬
+  </a>
+  
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.view).classList.add('active');
+      });
+    });
+    
+    // Goal card expansion
+    function toggleGoal(card) {
+      const wasExpanded = card.classList.contains('expanded');
+      document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('expanded'));
+      if (!wasExpanded) {
+        card.classList.add('expanded');
+      }
+    }
+    
+    // Command palette
+    function openCommandPalette() {
+      document.getElementById('commandOverlay').classList.add('active');
+      document.getElementById('commandInput').focus();
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openCommandPalette();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('commandOverlay').classList.remove('active');
+      }
+    });
+    
+    document.getElementById('commandOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'commandOverlay') {
+        e.target.classList.remove('active');
+      }
+    });
+    
+    document.getElementById('commandInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.value.trim()) {
+        const command = e.target.value.trim();
+        // For now, open Telegram with the command
+        window.open('https://t.me/ClawdbotBot?text=' + encodeURIComponent(command), '_blank');
+        e.target.value = '';
+        document.getElementById('commandOverlay').classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>

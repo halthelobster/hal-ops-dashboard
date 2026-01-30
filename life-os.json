@@ -1,0 +1,111 @@
+{
+  "northStar": {
+    "vision": "Live on a sailboat, circumnavigate the world over 5-10 years",
+    "tagline": "$1M/year from anywhere. Freedom, not just wealth.",
+    "timeHorizon": "1-3 years to launch"
+  },
+  "goals": [
+    {
+      "id": "income",
+      "emoji": "💰",
+      "name": "Income",
+      "target": "$1M/year location-independent",
+      "progress": 45,
+      "status": "on-track",
+      "milestones": [
+        { "name": "Stable $300k/year", "progress": 100, "done": true },
+        { "name": "Hit $500k/year", "progress": 60, "target": "2026 Q2" },
+        { "name": "Reach $750k/year", "progress": 0, "target": "2026 Q4" },
+        { "name": "$1M/year sustainable", "progress": 0, "target": "2027" }
+      ],
+      "projects": [
+        { "name": "WBD/Heads Up! (anchor client)", "status": "active", "leverage": "high" },
+        { "name": "LinkedIn brand building", "status": "active", "leverage": "high" },
+        { "name": "Speaking circuit (conferences)", "status": "active", "leverage": "medium" },
+        { "name": "Advisory client expansion", "status": "planned", "leverage": "high" }
+      ],
+      "nextAction": "Finalize WBD slides for David Song"
+    },
+    {
+      "id": "body",
+      "emoji": "💪",
+      "name": "Body",
+      "target": "Visible six-pack, strong, healthy",
+      "progress": 40,
+      "status": "needs-attention",
+      "milestones": [
+        { "name": "Consistent routine (3x lift, 3x cardio)", "progress": 70, "target": "ongoing" },
+        { "name": "15% body fat", "progress": 50, "target": "2026 Feb" },
+        { "name": "12% body fat", "progress": 0, "target": "2026 Apr" },
+        { "name": "Visible abs", "progress": 0, "target": "2026 May" }
+      ],
+      "projects": [
+        { "name": "Lift 3x/week", "status": "active", "leverage": "high" },
+        { "name": "Zone 2 cardio 3x/week", "status": "active", "leverage": "high" },
+        { "name": "Calorie deficit + protein", "status": "active", "leverage": "high" },
+        { "name": "10k steps daily", "status": "active", "leverage": "medium" }
+      ],
+      "nextAction": "Log today's workout and calories"
+    },
+    {
+      "id": "love",
+      "emoji": "❤️",
+      "name": "Relationship",
+      "target": "Wonderful girlfriend who fits the sailboat life",
+      "progress": 15,
+      "status": "needs-attention",
+      "milestones": [
+        { "name": "Dating actively", "progress": 30, "target": "now" },
+        { "name": "Meet someone promising", "progress": 0, "target": "2026 Q1" },
+        { "name": "In relationship", "progress": 0, "target": "2026" },
+        { "name": "Partner for sailing", "progress": 0, "target": "2027" }
+      ],
+      "projects": [
+        { "name": "Dating apps active", "status": "stalled", "leverage": "medium" },
+        { "name": "Social activities/meetups", "status": "planned", "leverage": "high" }
+      ],
+      "nextAction": "Refresh dating profiles or plan social event"
+    },
+    {
+      "id": "freedom",
+      "emoji": "⛵",
+      "name": "Freedom",
+      "target": "Location independence + sailboat ready",
+      "progress": 35,
+      "status": "on-track",
+      "milestones": [
+        { "name": "ASA 104 certified", "progress": 100, "done": true },
+        { "name": "Business runs without grinding", "progress": 40, "target": "2026 Q2" },
+        { "name": "100+ hours sailing experience", "progress": 25, "target": "2026" },
+        { "name": "Buy/outfit boat", "progress": 0, "target": "2027" },
+        { "name": "First offshore passage", "progress": 0, "target": "2027" }
+      ],
+      "projects": [
+        { "name": "Systematize consulting (SOPs, Hal)", "status": "active", "leverage": "high" },
+        { "name": "Sailing practice", "status": "stalled", "leverage": "high" },
+        { "name": "Build passive/recurring revenue", "status": "planned", "leverage": "high" }
+      ],
+      "nextAction": "Book next sailing day"
+    },
+    {
+      "id": "joy",
+      "emoji": "🌟",
+      "name": "Life Quality",
+      "target": "Time for adventure, Bonnie, and joy",
+      "progress": 60,
+      "status": "on-track",
+      "milestones": [
+        { "name": "Daily walks with Bonnie", "progress": 80, "target": "ongoing" },
+        { "name": "Work-life balance", "progress": 50, "target": "ongoing" },
+        { "name": "Regular adventures", "progress": 40, "target": "ongoing" }
+      ],
+      "projects": [
+        { "name": "Bonnie training & care", "status": "active", "leverage": "life" },
+        { "name": "Music practice (guitar)", "status": "active", "leverage": "joy" },
+        { "name": "Family time (Feb visit)", "status": "upcoming", "leverage": "life" }
+      ],
+      "nextAction": "Enjoy the journey"
+    }
+  ],
+  "lastUpdated": "2026-01-29T20:30:00-08:00"
+}
