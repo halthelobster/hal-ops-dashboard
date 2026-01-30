@@ -2406,37 +2406,44 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
-      try {
-        // Try REST API (works with Tailscale)
-        const res = await fetch(`/api/approve/${id}`, { method: 'POST' });
-        const data = await res.json();
-        
-        if (data.success) {
-          // Success feedback
-          btn.textContent = '✓ Sent!';
-          btn.style.background = 'var(--accent-green)';
-          btn.style.color = 'white';
-          showToast('Sent to Hal ✓', 'success');
+      // Check if we have a working backend (localhost or Tailscale)
+      const hasBackend = window.location.hostname.includes('localhost') || 
+                         window.location.hostname.includes('127.0.0.1') ||
+                         window.location.hostname.includes('.ts.net');
+      
+      if (hasBackend) {
+        try {
+          const res = await fetch(`/api/approve/${id}`, { method: 'POST' });
+          const data = await res.json();
           
-          // Animate out and remove after delay
-          if (item) {
-            item.style.transition = 'all 0.5s ease';
-            item.style.borderLeftColor = 'var(--accent-green)';
-            setTimeout(() => {
-              item.style.opacity = '0';
-              item.style.transform = 'translateX(20px)';
-              setTimeout(() => item.remove(), 500);
-            }, 1000);
+          if (data.success) {
+            btn.textContent = '✓ Sent!';
+            btn.style.background = 'var(--accent-green)';
+            btn.style.color = 'white';
+            showToast('Sent to Hal ✓', 'success');
+            
+            if (item) {
+              item.style.transition = 'all 0.5s ease';
+              item.style.borderLeftColor = 'var(--accent-green)';
+              setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => item.remove(), 500);
+              }, 1000);
+            }
+            return;
           }
-        } else {
-          throw new Error(data.message || 'Approval failed');
+        } catch (e) {
+          console.log('API failed, falling back to Telegram');
         }
-      } catch (error) {
-        console.error('Approve error:', error);
-        showToast('Error: ' + error.message, 'error');
-        btn.disabled = false;
-        btn.textContent = '✓ Approve';
       }
+      
+      // Fallback: Open Telegram with pre-filled message
+      const telegramUrl = `https://t.me/Hal9001Bot?text=${encodeURIComponent('approve ' + id)}`;
+      window.open(telegramUrl, '_blank');
+      showToast('Opening Telegram...', 'info');
+      btn.disabled = false;
+      btn.textContent = '✓ Approve';
     }
     
     async function rejectItem(id) {
@@ -2447,41 +2454,48 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
-      try {
-        // Try REST API
-        const res = await fetch(`/api/reject/${id}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ reason })
-        });
-        const data = await res.json();
-        
-        if (data.success) {
-          // Success feedback
-          btn.textContent = '✗ Sent!';
-          btn.style.background = 'var(--accent-red)';
-          btn.style.color = 'white';
-          showToast('Rejection sent to Hal', 'success');
+      const hasBackend = window.location.hostname.includes('localhost') || 
+                         window.location.hostname.includes('127.0.0.1') ||
+                         window.location.hostname.includes('.ts.net');
+      
+      if (hasBackend) {
+        try {
+          const res = await fetch(`/api/reject/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reason })
+          });
+          const data = await res.json();
           
-          // Animate out and remove
-          if (item) {
-            item.style.transition = 'all 0.5s ease';
-            item.style.borderLeftColor = 'var(--accent-red)';
-            setTimeout(() => {
-              item.style.opacity = '0';
-              item.style.transform = 'translateX(20px)';
-              setTimeout(() => item.remove(), 500);
-            }, 1000);
+          if (data.success) {
+            btn.textContent = '✗ Sent!';
+            btn.style.background = 'var(--accent-red)';
+            btn.style.color = 'white';
+            showToast('Rejection sent to Hal', 'success');
+            
+            if (item) {
+              item.style.transition = 'all 0.5s ease';
+              item.style.borderLeftColor = 'var(--accent-red)';
+              setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => item.remove(), 500);
+              }, 1000);
+            }
+            return;
           }
-        } else {
-          throw new Error(data.message || 'Rejection failed');
+        } catch (e) {
+          console.log('API failed, falling back to Telegram');
         }
-      } catch (error) {
-        console.error('Reject error:', error);
-        showToast('Error: ' + error.message, 'error');
-        btn.disabled = false;
-        btn.textContent = '✗ Reject';
       }
+      
+      // Fallback: Open Telegram
+      const msg = reason ? `reject ${id}: ${reason}` : `reject ${id}`;
+      const telegramUrl = `https://t.me/Hal9001Bot?text=${encodeURIComponent(msg)}`;
+      window.open(telegramUrl, '_blank');
+      showToast('Opening Telegram...', 'info');
+      btn.disabled = false;
+      btn.textContent = '✗ Reject';
     }
     
     // =============================================================================
