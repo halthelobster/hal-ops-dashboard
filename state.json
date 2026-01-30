@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-30T11:44:11.337Z",
+  "lastUpdated": "2026-01-30T12:23:32.320Z",
   "health": {
     "crons": {
       "healthy": 19,
@@ -7,7 +7,7 @@
       "status": "warning"
     },
     "agents": {
-      "active": 3,
+      "active": 10,
       "idle": 0,
       "status": "ok"
     },
@@ -72,17 +72,17 @@
   ],
   "crons": [
     {
-      "name": "auto-commit-workspace",
-      "schedule": "in 16m",
+      "name": "desktop-cleanup",
+      "schedule": "in 37m",
       "health": "ok",
-      "lastRun": "2h ago",
+      "lastRun": "-",
       "error": null
     },
     {
-      "name": "desktop-cleanup",
-      "schedule": "in 1h",
+      "name": "auto-commit-workspace",
+      "schedule": "in 2h",
       "health": "ok",
-      "lastRun": "-",
+      "lastRun": "23m ago",
       "error": null
     },
     {
@@ -94,9 +94,9 @@
     },
     {
       "name": "yen-intervention-watch",
-      "schedule": "in 3h",
+      "schedule": "in 2h",
       "health": "ok",
-      "lastRun": "2m ago",
+      "lastRun": "41m ago",
       "error": null
     },
     {
@@ -150,23 +150,23 @@
     },
     {
       "name": "sleep-winddown-60",
-      "schedule": "in 20h",
+      "schedule": "in 19h",
       "health": "ok",
-      "lastRun": "4h ago",
+      "lastRun": "5h ago",
       "error": null
     },
     {
       "name": "sleep-winddown-45",
-      "schedule": "in 20h",
+      "schedule": "in 19h",
       "health": "ok",
-      "lastRun": "4h ago",
+      "lastRun": "5h ago",
       "error": null
     },
     {
       "name": "sleep-winddown-30",
-      "schedule": "in 20h",
+      "schedule": "in 19h",
       "health": "ok",
-      "lastRun": "4h ago",
+      "lastRun": "5h ago",
       "error": null
     },
     {
@@ -178,9 +178,9 @@
     },
     {
       "name": "sleep-lights-out",
-      "schedule": "in 21h",
+      "schedule": "in 20h",
       "health": "ok",
-      "lastRun": "3h ago",
+      "lastRun": "4h ago",
       "error": null
     },
     {
@@ -258,40 +258,260 @@
   },
   "agents": [
     {
-      "key": "agent:main:main",
-      "name": "Main session",
-      "type": "main",
-      "age": "1m",
+      "key": "agent:main:subagent:5e756b72-32d6-4936-8c90-602129b103f0",
+      "name": "command-center-frontend-polish",
+      "type": "subagent",
+      "age": "just now",
       "tokenUsage": {
-        "used": "94k",
+        "used": "47k",
         "total": "200k",
-        "percent": 47
+        "percent": 24
       },
       "isActive": true
     },
     {
-      "key": "agent:main:cron:e774893e-36c7-4d55-9c3d-e072dd5df50a",
-      "name": "e774893e-36c7-4d55-9c3d-e072dd5df50a",
-      "type": "cron",
-      "age": "2m",
+      "key": "agent:main:main",
+      "name": "Main session",
+      "type": "main",
+      "age": "just now",
       "tokenUsage": {
-        "used": "24k",
+        "used": "177k",
         "total": "200k",
-        "percent": 12
+        "percent": 88
       },
       "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:dee83cba-fc0c-4ed4-8be9-0d9fd44594fe",
+      "name": "secure-email-reader-build",
+      "type": "subagent",
+      "age": "3m",
+      "tokenUsage": null,
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:0e20de4d-bece-418b-b758-449a8ac89830",
+      "name": "command-center-life-os-v2",
+      "type": "subagent",
+      "age": "3m",
+      "tokenUsage": null,
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:eb6ff791-7b1f-4e20-983c-ec50a5432267",
+      "name": "secure-email-reader-spec",
+      "type": "subagent",
+      "age": "8m",
+      "tokenUsage": {
+        "used": "43k",
+        "total": "200k",
+        "percent": 22
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:c9ad58b0-b216-46d4-b2b9-02b408d182d0",
+      "name": "command-center-life-os-alignment",
+      "type": "subagent",
+      "age": "8m",
+      "tokenUsage": {
+        "used": "40k",
+        "total": "200k",
+        "percent": 20
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:512938d2-9f1a-43b0-bd95-49ea44e42dcb",
+      "name": "agent-orchestration-skill",
+      "type": "subagent",
+      "age": "17m",
+      "tokenUsage": {
+        "used": "41k",
+        "total": "200k",
+        "percent": 21
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:cron:1303d57b-9d7b-4ae0-98f9-7177d4819b90",
+      "name": "1303d57b-9d7b-4ae0-98f9-7177d4819b90",
+      "type": "cron",
+      "age": "23m",
+      "tokenUsage": {
+        "used": "22k",
+        "total": "200k",
+        "percent": 11
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:46234a22-0cb3-4925-b94d-303660aa6994",
+      "name": "revenue-opportunities-research",
+      "type": "subagent",
+      "age": "25m",
+      "tokenUsage": {
+        "used": "18k",
+        "total": "200k",
+        "percent": 9
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:debd52af-7d61-4f50-99ce-7a8f239af619",
+      "name": "dashboard-server-deploy",
+      "type": "subagent",
+      "age": "27m",
+      "tokenUsage": {
+        "used": "16k",
+        "total": "200k",
+        "percent": 8
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:subagent:053a3dde-ece6-4add-9e0a-bddc6973ad22",
+      "name": "interactive-dashboard-architect",
+      "type": "subagent",
+      "age": "30m",
+      "tokenUsage": {
+        "used": "39k",
+        "total": "200k",
+        "percent": 20
+      },
+      "isActive": false
     },
     {
       "key": "agent:main:subagent:af3c1195-bcd5-4914-be88-0f7ebac454c0",
       "name": "dashboard-builder-v3",
       "type": "subagent",
-      "age": "14m",
+      "age": "53m",
       "tokenUsage": {
         "used": "57k",
         "total": "200k",
         "percent": 28
       },
-      "isActive": true
+      "isActive": false
     }
-  ]
+  ],
+  "lifeOS": {
+    "rocks": [
+      {
+        "number": 1,
+        "description": "Land 1 new consulting client (non-WB)",
+        "owner": "Jordan",
+        "done": false
+      },
+      {
+        "number": 2,
+        "description": "Bright Black website relaunched (high-end, SEO-optimized)",
+        "owner": "Hal",
+        "done": false
+      },
+      {
+        "number": 3,
+        "description": "LinkedIn: 1 post/week minimum for 10 weeks",
+        "owner": "Jordan + Hal",
+        "done": false
+      },
+      {
+        "number": 4,
+        "description": "Hit 175 lbs",
+        "owner": "Jordan",
+        "done": false
+      },
+      {
+        "number": 5,
+        "description": "Book 1 speaking gig or podcast appearance",
+        "owner": "Jordan",
+        "done": false
+      },
+      {
+        "number": 6,
+        "description": "Have 3+ quality dates",
+        "owner": "Jordan",
+        "done": false
+      },
+      {
+        "number": 7,
+        "description": "Reach out to 5 former colleagues/contacts",
+        "owner": "Jordan",
+        "done": false
+      },
+      {
+        "number": 8,
+        "description": "Playmakers Guild: 10 new members, active community",
+        "owner": "Jordan",
+        "done": false
+      }
+    ],
+    "scorecard": [
+      {
+        "metric": "LinkedIn posts published",
+        "target": "3",
+        "actual": ""
+      },
+      {
+        "metric": "Warm outreach messages sent",
+        "target": "3",
+        "actual": ""
+      },
+      {
+        "metric": "Sales/discovery calls",
+        "target": "1",
+        "actual": ""
+      },
+      {
+        "metric": "Workouts completed",
+        "target": "3",
+        "actual": ""
+      },
+      {
+        "metric": "Weight (Monday AM)",
+        "target": "↓ trend",
+        "actual": ""
+      },
+      {
+        "metric": "Dates / social events",
+        "target": "1",
+        "actual": ""
+      },
+      {
+        "metric": "Hours deep work (non-WB)",
+        "target": "5",
+        "actual": ""
+      }
+    ],
+    "goals": {
+      "income": {
+        "target": "$400K+ total, $150K+ non-WB",
+        "progress": 0
+      },
+      "body": {
+        "target": "Hit 172-175 (cut)",
+        "progress": 0
+      },
+      "relationship": {
+        "target": "Dating consistently OR in relationship",
+        "progress": 0
+      },
+      "freedom": {
+        "target": "2+ multi-day sailing trips",
+        "progress": 0
+      },
+      "lifeQuality": {
+        "target": "Perform at 3+ open mics",
+        "progress": 60
+      }
+    },
+    "rockProgress": 0,
+    "rocksCompleted": 0,
+    "rocksTotal": 8,
+    "daysUntilQ1End": 60
+  },
+  "taskCounts": {
+    "today": 12,
+    "inbox": 2,
+    "total": 14
+  }
 }

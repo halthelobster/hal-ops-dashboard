@@ -1,5 +1,11 @@
 [
   {
+    "timestamp": "2026-01-30T12:23:32.319Z",
+    "action": "Dashboard updated",
+    "details": "19/20 crons OK, 0 tasks, 10 agents",
+    "source": "system"
+  },
+  {
     "timestamp": "2026-01-30T11:44:11.335Z",
     "action": "Dashboard updated",
     "details": "19/20 crons OK, 0 tasks, 3 agents",
