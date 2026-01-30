@@ -1,10 +1,18 @@
 {
-  "lastUpdated": "2026-01-29T19:48:00-08:00",
+  "lastUpdated": "2026-01-30T11:25:19.243Z",
   "health": {
-    "crons": { "healthy": 18, "total": 19, "status": "warning" },
-    "agents": { "active": 1, "idle": 0, "status": "ok" },
-    "blocked": 2,
-    "active": 5
+    "crons": {
+      "healthy": 19,
+      "total": 20,
+      "status": "warning"
+    },
+    "agents": {
+      "active": 20,
+      "idle": 0,
+      "status": "ok"
+    },
+    "blocked": 1,
+    "active": 0
   },
   "needsJordan": [
     {
@@ -35,36 +43,7 @@
       "added": "2026-01-27"
     }
   ],
-  "activeWork": [
-    {
-      "id": "linkedin-day1",
-      "title": "LinkedIn Day 1 - Awaiting Victoria Feedback",
-      "status": "waiting",
-      "project": "LinkedIn Challenge",
-      "progress": 60
-    },
-    {
-      "id": "linkedin-chronic-pain",
-      "title": "LinkedIn Chronic Pain Post - Awaiting Feedback",
-      "status": "waiting",
-      "project": "LinkedIn Challenge",
-      "progress": 70
-    },
-    {
-      "id": "notion-builder",
-      "title": "Building Operations Center in Notion",
-      "status": "running",
-      "project": "Hal Operations",
-      "progress": 10
-    },
-    {
-      "id": "dashboard-build",
-      "title": "Building Custom Dashboard",
-      "status": "running",
-      "project": "Hal Operations",
-      "progress": 30
-    }
-  ],
+  "activeWork": [],
   "upcoming": [
     {
       "title": "Brighton Speaker Deadline",
@@ -92,38 +71,189 @@
     }
   ],
   "crons": [
-    { "name": "Granola Daily Review", "schedule": "8pm daily", "health": "ok", "lastRun": "2026-01-28 8:00 PM" },
-    { "name": "Auto-Commit Workspace", "schedule": "Every 2h", "health": "ok", "lastRun": "2026-01-29 6:00 PM" },
-    { "name": "Yen Intervention Watch", "schedule": "Every 3h", "health": "ok", "lastRun": "2026-01-29 4:47 PM" },
-    { "name": "Daily Ideas", "schedule": "9am daily", "health": "ok", "lastRun": "2026-01-29 9:00 AM" },
-    { "name": "Clawdbot Intel", "schedule": "11am daily", "health": "ok", "lastRun": "2026-01-28 11:00 AM" },
-    { "name": "Granola Sync (Noon)", "schedule": "12pm daily", "health": "ok", "lastRun": "2026-01-29 12:00 PM" },
-    { "name": "Granola Sync (6pm)", "schedule": "6pm daily", "health": "ok", "lastRun": "2026-01-29 6:00 PM" },
-    { "name": "LinkedIn Challenge PM", "schedule": "4pm daily", "health": "error", "lastRun": "2026-01-29 4:00 PM", "error": "Auth cooldown" },
-    { "name": "Desktop Cleanup", "schedule": "5am daily", "health": "ok", "lastRun": null },
-    { "name": "Session Search Index", "schedule": "6am daily", "health": "ok", "lastRun": null },
-    { "name": "Sleep Wind-down (60m)", "schedule": "11:15pm", "health": "ok", "lastRun": "2026-01-28 11:15 PM" },
-    { "name": "Sleep Wind-down (45m)", "schedule": "11:30pm", "health": "ok", "lastRun": "2026-01-28 11:30 PM" },
-    { "name": "Sleep Wind-down (30m)", "schedule": "11:45pm", "health": "ok", "lastRun": "2026-01-28 11:45 PM" },
-    { "name": "Sleep Wind-down (15m)", "schedule": "12:00am", "health": "ok", "lastRun": "2026-01-29 12:00 AM" },
-    { "name": "Sleep Lights Out", "schedule": "12:15am", "health": "ok", "lastRun": "2026-01-29 12:15 AM" },
-    { "name": "Playmaker Signals", "schedule": "Sun 7am", "health": "ok", "lastRun": null },
-    { "name": "Slack Team Review", "schedule": "Feb 9", "health": "ok", "lastRun": null },
-    { "name": "WBD Slides Reminder", "schedule": "Jan 30 9am", "health": "ok", "lastRun": null },
-    { "name": "ChatGPT Plus Review", "schedule": "Feb 28", "health": "ok", "lastRun": null }
+    {
+      "name": "yen-intervention-watch",
+      "schedule": "in 17m",
+      "health": "ok",
+      "lastRun": "4h ago",
+      "error": null
+    },
+    {
+      "name": "auto-commit-workspace",
+      "schedule": "in 35m",
+      "health": "ok",
+      "lastRun": "1h ago",
+      "error": null
+    },
+    {
+      "name": "desktop-cleanup",
+      "schedule": "in 2h",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "session-search-index",
+      "schedule": "in 3h",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "daily-ideas",
+      "schedule": "in 6h",
+      "health": "ok",
+      "lastRun": "18h ago",
+      "error": null
+    },
+    {
+      "name": "wbd-slides-reminder",
+      "schedule": "in 6h",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "clawdbot-intel",
+      "schedule": "in 8h",
+      "health": "ok",
+      "lastRun": "2d ago",
+      "error": null
+    },
+    {
+      "name": "Granola Sync (Noon)",
+      "schedule": "in 9h",
+      "health": "ok",
+      "lastRun": "15h ago",
+      "error": null
+    },
+    {
+      "name": "linkedin-challenge-af...",
+      "schedule": "in 13h",
+      "health": "error",
+      "lastRun": "11h ago",
+      "error": "See cron logs"
+    },
+    {
+      "name": "Granola Sync (6pm)",
+      "schedule": "in 15h",
+      "health": "ok",
+      "lastRun": "9h ago",
+      "error": null
+    },
+    {
+      "name": "granola-daily-review",
+      "schedule": "in 17h",
+      "health": "ok",
+      "lastRun": "7h ago",
+      "error": null
+    },
+    {
+      "name": "sleep-winddown-60",
+      "schedule": "in 20h",
+      "health": "ok",
+      "lastRun": "4h ago",
+      "error": null
+    },
+    {
+      "name": "sleep-winddown-45",
+      "schedule": "in 20h",
+      "health": "ok",
+      "lastRun": "4h ago",
+      "error": null
+    },
+    {
+      "name": "sleep-winddown-30",
+      "schedule": "in 20h",
+      "health": "ok",
+      "lastRun": "4h ago",
+      "error": null
+    },
+    {
+      "name": "sleep-winddown-15",
+      "schedule": "in 21h",
+      "health": "ok",
+      "lastRun": "3h ago",
+      "error": null
+    },
+    {
+      "name": "sleep-lights-out",
+      "schedule": "in 21h",
+      "health": "ok",
+      "lastRun": "3h ago",
+      "error": null
+    },
+    {
+      "name": "playmaker-signals-weekly",
+      "schedule": "in 2d",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "slack-team-review",
+      "schedule": "in 10d",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "chatgpt-plus-review",
+      "schedule": "in 29d",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "reboot-confirmation",
+      "schedule": "in 363d",
+      "health": "ok",
+      "lastRun": "2d ago",
+      "error": null
+    }
   ],
   "projects": [
-    { "name": "LinkedIn 30-Day Challenge", "status": "active", "progress": 3, "total": 30 },
-    { "name": "Speaking Circuit 2026", "status": "active", "progress": 2, "total": 6 },
-    { "name": "Hal Operations", "status": "active", "progress": 50, "total": 100 },
-    { "name": "Website & Positioning", "status": "review", "progress": 80, "total": 100 },
-    { "name": "Playmakers Guild", "status": "backlog", "progress": 10, "total": 100 },
-    { "name": "AI Stack & Tools", "status": "maintenance", "progress": 90, "total": 100 }
+    {
+      "name": "LinkedIn 30-Day Challenge",
+      "status": "active",
+      "progress": 3,
+      "total": 30
+    },
+    {
+      "name": "Speaking Circuit 2026",
+      "status": "active",
+      "progress": 2,
+      "total": 6
+    },
+    {
+      "name": "Hal Operations",
+      "status": "active",
+      "progress": 50,
+      "total": 100
+    },
+    {
+      "name": "Website & Positioning",
+      "status": "review",
+      "progress": 80,
+      "total": 100
+    },
+    {
+      "name": "Playmakers Guild",
+      "status": "backlog",
+      "progress": 10,
+      "total": 100
+    },
+    {
+      "name": "AI Stack & Tools",
+      "status": "maintenance",
+      "progress": 90,
+      "total": 100
+    }
   ],
   "stats": {
     "tasksCompletedThisWeek": 12,
     "ideasInBacklog": 23,
     "openLoops": 7,
-    "cronJobsTotal": 19
+    "cronJobsTotal": 20
   }
 }
