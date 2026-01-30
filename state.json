@@ -1,0 +1,129 @@
+{
+  "lastUpdated": "2026-01-29T19:48:00-08:00",
+  "health": {
+    "crons": { "healthy": 18, "total": 19, "status": "warning" },
+    "agents": { "active": 1, "idle": 0, "status": "ok" },
+    "blocked": 2,
+    "active": 5
+  },
+  "needsJordan": [
+    {
+      "id": "gmail-api-fix",
+      "title": "Fix Gmail API Access",
+      "context": "Domain-wide delegation scopes may have been removed. Need to check Admin Console tomorrow.",
+      "priority": "P1",
+      "type": "blocker",
+      "project": "AI Stack & Tools",
+      "added": "2026-01-29"
+    },
+    {
+      "id": "saastr-review",
+      "title": "Review & Submit SaaStr Application",
+      "context": "Draft ready at notes/projects/saastr-submission/. Three talk options written.",
+      "priority": "P2",
+      "type": "approval",
+      "project": "Speaking Circuit",
+      "added": "2026-01-28"
+    },
+    {
+      "id": "positioning-review",
+      "title": "Review Positioning Sub-Agent Output",
+      "context": "Comprehensive positioning docs ready in notes/projects/positioning-council/",
+      "priority": "P2",
+      "type": "review",
+      "project": "Website & Positioning",
+      "added": "2026-01-27"
+    }
+  ],
+  "activeWork": [
+    {
+      "id": "linkedin-day1",
+      "title": "LinkedIn Day 1 - Awaiting Victoria Feedback",
+      "status": "waiting",
+      "project": "LinkedIn Challenge",
+      "progress": 60
+    },
+    {
+      "id": "linkedin-chronic-pain",
+      "title": "LinkedIn Chronic Pain Post - Awaiting Feedback",
+      "status": "waiting",
+      "project": "LinkedIn Challenge",
+      "progress": 70
+    },
+    {
+      "id": "notion-builder",
+      "title": "Building Operations Center in Notion",
+      "status": "running",
+      "project": "Hal Operations",
+      "progress": 10
+    },
+    {
+      "id": "dashboard-build",
+      "title": "Building Custom Dashboard",
+      "status": "running",
+      "project": "Hal Operations",
+      "progress": 30
+    }
+  ],
+  "upcoming": [
+    {
+      "title": "Brighton Speaker Deadline",
+      "date": "2026-02-11",
+      "daysAway": 13,
+      "project": "Speaking Circuit"
+    },
+    {
+      "title": "Blackman Family Visit",
+      "date": "2026-02-21",
+      "daysAway": 23,
+      "project": "Personal"
+    },
+    {
+      "title": "PGC San Francisco",
+      "date": "2026-03-09",
+      "daysAway": 39,
+      "project": "Speaking Circuit"
+    },
+    {
+      "title": "Nordic Game Deadline",
+      "date": "2026-04-02",
+      "daysAway": 63,
+      "project": "Speaking Circuit"
+    }
+  ],
+  "crons": [
+    { "name": "Granola Daily Review", "schedule": "8pm daily", "health": "ok", "lastRun": "2026-01-28 8:00 PM" },
+    { "name": "Auto-Commit Workspace", "schedule": "Every 2h", "health": "ok", "lastRun": "2026-01-29 6:00 PM" },
+    { "name": "Yen Intervention Watch", "schedule": "Every 3h", "health": "ok", "lastRun": "2026-01-29 4:47 PM" },
+    { "name": "Daily Ideas", "schedule": "9am daily", "health": "ok", "lastRun": "2026-01-29 9:00 AM" },
+    { "name": "Clawdbot Intel", "schedule": "11am daily", "health": "ok", "lastRun": "2026-01-28 11:00 AM" },
+    { "name": "Granola Sync (Noon)", "schedule": "12pm daily", "health": "ok", "lastRun": "2026-01-29 12:00 PM" },
+    { "name": "Granola Sync (6pm)", "schedule": "6pm daily", "health": "ok", "lastRun": "2026-01-29 6:00 PM" },
+    { "name": "LinkedIn Challenge PM", "schedule": "4pm daily", "health": "error", "lastRun": "2026-01-29 4:00 PM", "error": "Auth cooldown" },
+    { "name": "Desktop Cleanup", "schedule": "5am daily", "health": "ok", "lastRun": null },
+    { "name": "Session Search Index", "schedule": "6am daily", "health": "ok", "lastRun": null },
+    { "name": "Sleep Wind-down (60m)", "schedule": "11:15pm", "health": "ok", "lastRun": "2026-01-28 11:15 PM" },
+    { "name": "Sleep Wind-down (45m)", "schedule": "11:30pm", "health": "ok", "lastRun": "2026-01-28 11:30 PM" },
+    { "name": "Sleep Wind-down (30m)", "schedule": "11:45pm", "health": "ok", "lastRun": "2026-01-28 11:45 PM" },
+    { "name": "Sleep Wind-down (15m)", "schedule": "12:00am", "health": "ok", "lastRun": "2026-01-29 12:00 AM" },
+    { "name": "Sleep Lights Out", "schedule": "12:15am", "health": "ok", "lastRun": "2026-01-29 12:15 AM" },
+    { "name": "Playmaker Signals", "schedule": "Sun 7am", "health": "ok", "lastRun": null },
+    { "name": "Slack Team Review", "schedule": "Feb 9", "health": "ok", "lastRun": null },
+    { "name": "WBD Slides Reminder", "schedule": "Jan 30 9am", "health": "ok", "lastRun": null },
+    { "name": "ChatGPT Plus Review", "schedule": "Feb 28", "health": "ok", "lastRun": null }
+  ],
+  "projects": [
+    { "name": "LinkedIn 30-Day Challenge", "status": "active", "progress": 3, "total": 30 },
+    { "name": "Speaking Circuit 2026", "status": "active", "progress": 2, "total": 6 },
+    { "name": "Hal Operations", "status": "active", "progress": 50, "total": 100 },
+    { "name": "Website & Positioning", "status": "review", "progress": 80, "total": 100 },
+    { "name": "Playmakers Guild", "status": "backlog", "progress": 10, "total": 100 },
+    { "name": "AI Stack & Tools", "status": "maintenance", "progress": 90, "total": 100 }
+  ],
+  "stats": {
+    "tasksCompletedThisWeek": 12,
+    "ideasInBacklog": 23,
+    "openLoops": 7,
+    "cronJobsTotal": 19
+  }
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hal's Operations Center</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #21262d;
+      --border: #30363d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --accent-red: #f85149;
+      --accent-orange: #d29922;
+      --accent-green: #3fb950;
+      --accent-blue: #58a6ff;
+      --accent-purple: #a371f7;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    h1 .logo { font-size: 32px; }
+    
+    .last-updated {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .badge {
+      background: var(--accent-red);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    
+    .badge.green { background: var(--accent-green); }
+    .badge.orange { background: var(--accent-orange); }
+    
+    /* Needs Jordan Section - PROMINENT */
+    .needs-jordan {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1a0a0a 0%, var(--bg-secondary) 100%);
+      border-color: var(--accent-red);
+      border-width: 2px;
+    }
+    
+    .needs-jordan .card-title {
+      color: var(--accent-red);
+      font-size: 18px;
+    }
+    
+    .need-item {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--accent-red);
+    }
+    
+    .need-item:last-child { margin-bottom: 0; }
+    .need-item h4 { font-size: 15px; margin-bottom: 6px; }
+    .need-item p { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+    
+    .need-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .need-meta span { display: flex; align-items: center; gap: 4px; }
+    
+    /* Health Dashboard */
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    
+    .health-item {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .health-value {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .health-value.green { color: var(--accent-green); }
+    .health-value.orange { color: var(--accent-orange); }
+    .health-value.red { color: var(--accent-red); }
+    
+    .health-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Active Work */
+    .work-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .work-item:last-child { border-bottom: none; }
+    
+    .work-status {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    
+    .work-status.running {
+      background: var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+    
+    .work-status.waiting { background: var(--accent-orange); }
+    .work-status.blocked { background: var(--accent-red); }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .work-info { flex: 1; }
+    .work-title { font-size: 14px; margin-bottom: 2px; }
+    .work-project { font-size: 12px; color: var(--text-muted); }
+    
+    .work-progress {
+      width: 60px;
+      height: 6px;
+      background: var(--bg-primary);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .work-progress-bar {
+      height: 100%;
+      background: var(--accent-blue);
+      border-radius: 3px;
+    }
+    
+    /* Upcoming */
+    .upcoming-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .upcoming-item:last-child { border-bottom: none; }
+    .upcoming-title { font-size: 14px; }
+    .upcoming-project { font-size: 12px; color: var(--text-muted); }
+    .upcoming-date { text-align: right; }
+    
+    .upcoming-days {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+    
+    .upcoming-days.soon { color: var(--accent-orange); }
+    .upcoming-days.urgent { color: var(--accent-red); }
+    .upcoming-label { font-size: 11px; color: var(--text-muted); }
+    
+    /* Cron Jobs */
+    .cron-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+    }
+    
+    .cron-item {
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+    
+    .cron-health {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    .cron-health.ok { background: var(--accent-green); }
+    .cron-health.error { background: var(--accent-red); }
+    
+    .cron-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .cron-schedule {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+    
+    /* Projects */
+    .project-item { margin-bottom: 16px; }
+    .project-item:last-child { margin-bottom: 0; }
+    
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .project-name { font-size: 14px; font-weight: 500; }
+    
+    .project-status {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    
+    .project-status.active { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+    .project-status.review { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
+    .project-status.backlog { background: rgba(139, 148, 158, 0.2); color: var(--text-secondary); }
+    .project-status.maintenance { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
+    
+    .project-progress {
+      height: 8px;
+      background: var(--bg-primary);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .project-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+      border-radius: 4px;
+    }
+    
+    /* Stats Row */
+    .stats-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    @media (max-width: 700px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .health-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+    
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    
+    footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="logo">🦞</span> Hal's Operations Center</h1>
+      <div class="last-updated">Last updated: Jan 29, 2026 7:48 PM</div>
+    </header>
+    
+    <div class="grid">
+      <!-- NEEDS JORDAN -->
+      <div class="card needs-jordan">
+        <div class="card-header">
+          <div class="card-title">🔴 NEEDS YOU</div>
+          <span class="badge">3</span>
+        </div>
+        <div class="need-item">
+          <h4>Fix Gmail API Access</h4>
+          <p>Domain-wide delegation scopes may have been removed. Need to check Admin Console tomorrow.</p>
+          <div class="need-meta">
+            <span>📁 AI Stack & Tools</span>
+            <span>🏷️ blocker</span>
+            <span>⚡ P1</span>
+          </div>
+        </div>
+        <div class="need-item">
+          <h4>Review & Submit SaaStr Application</h4>
+          <p>Draft ready at notes/projects/saastr-submission/. Three talk options written.</p>
+          <div class="need-meta">
+            <span>📁 Speaking Circuit</span>
+            <span>🏷️ approval</span>
+            <span>⚡ P2</span>
+          </div>
+        </div>
+        <div class="need-item">
+          <h4>Review Positioning Sub-Agent Output</h4>
+          <p>Comprehensive positioning docs ready in notes/projects/positioning-council/</p>
+          <div class="need-meta">
+            <span>📁 Website & Positioning</span>
+            <span>🏷️ review</span>
+            <span>⚡ P2</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Health Dashboard -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 System Health</div>
+        </div>
+        <div class="health-grid">
+          <div class="health-item">
+            <div class="health-value orange">18/19</div>
+            <div class="health-label">Crons Healthy</div>
+          </div>
+          <div class="health-item">
+            <div class="health-value green">1</div>
+            <div class="health-label">Agents Active</div>
+          </div>
+          <div class="health-item">
+            <div class="health-value">5</div>
+            <div class="health-label">Active Tasks</div>
+          </div>
+          <div class="health-item">
+            <div class="health-value red">2</div>
+            <div class="health-label">Blocked</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Active Work -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🏃 Active Work</div>
+        </div>
+        <div class="work-item">
+          <div class="work-status waiting"></div>
+          <div class="work-info">
+            <div class="work-title">LinkedIn Day 1 - Awaiting Victoria Feedback</div>
+            <div class="work-project">LinkedIn Challenge</div>
+          </div>
+          <div class="work-progress"><div class="work-progress-bar" style="width: 60%"></div></div>
+        </div>
+        <div class="work-item">
+          <div class="work-status waiting"></div>
+          <div class="work-info">
+            <div class="work-title">LinkedIn Chronic Pain - Awaiting Feedback</div>
+            <div class="work-project">LinkedIn Challenge</div>
+          </div>
+          <div class="work-progress"><div class="work-progress-bar" style="width: 70%"></div></div>
+        </div>
+        <div class="work-item">
+          <div class="work-status running"></div>
+          <div class="work-info">
+            <div class="work-title">Building Operations Center in Notion</div>
+            <div class="work-project">Hal Operations</div>
+          </div>
+          <div class="work-progress"><div class="work-progress-bar" style="width: 10%"></div></div>
+        </div>
+        <div class="work-item">
+          <div class="work-status running"></div>
+          <div class="work-info">
+            <div class="work-title">Building Custom Dashboard</div>
+            <div class="work-project">Hal Operations</div>
+          </div>
+          <div class="work-progress"><div class="work-progress-bar" style="width: 90%"></div></div>
+        </div>
+      </div>
+      
+      <!-- Upcoming -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⏰ Coming Up</div>
+        </div>
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-title">Brighton Speaker Deadline</div>
+            <div class="upcoming-project">Speaking Circuit</div>
+          </div>
+          <div class="upcoming-date">
+            <div class="upcoming-days soon">13d</div>
+            <div class="upcoming-label">Feb 11</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-title">Blackman Family Visit</div>
+            <div class="upcoming-project">Personal</div>
+          </div>
+          <div class="upcoming-date">
+            <div class="upcoming-days">23d</div>
+            <div class="upcoming-label">Feb 21</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-title">PGC San Francisco</div>
+            <div class="upcoming-project">Speaking Circuit</div>
+          </div>
+          <div class="upcoming-date">
+            <div class="upcoming-days">39d</div>
+            <div class="upcoming-label">Mar 9</div>
+          </div>
+        </div>
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-title">Nordic Game Deadline</div>
+            <div class="upcoming-project">Speaking Circuit</div>
+          </div>
+          <div class="upcoming-date">
+            <div class="upcoming-days">63d</div>
+            <div class="upcoming-label">Apr 2</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📁 Projects</div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">LinkedIn 30-Day Challenge</span>
+            <span class="project-status active">active</span>
+          </div>
+          <div class="project-progress"><div class="project-progress-bar" style="width: 10%"></div></div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Speaking Circuit 2026</span>
+            <span class="project-status active">active</span>
+          </div>
+          <div class="project-progress"><div class="project-progress-bar" style="width: 33%"></div></div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Hal Operations</span>
+            <span class="project-status active">active</span>
+          </div>
+          <div class="project-progress"><div class="project-progress-bar" style="width: 50%"></div></div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Website & Positioning</span>
+            <span class="project-status review">review</span>
+          </div>
+          <div class="project-progress"><div class="project-progress-bar" style="width: 80%"></div></div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Playmakers Guild</span>
+            <span class="project-status backlog">backlog</span>
+          </div>
+          <div class="project-progress"><div class="project-progress-bar" style="width: 10%"></div></div>
+        </div>
+      </div>
+      
+      <!-- Cron Jobs -->
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <div class="card-title">🔄 Cron Jobs</div>
+          <span class="badge orange">18/19 Healthy</span>
+        </div>
+        <div class="cron-grid">
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Daily Review</span><span class="cron-schedule">8pm</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Auto-Commit Workspace</span><span class="cron-schedule">2h</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Yen Intervention Watch</span><span class="cron-schedule">3h</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Daily Ideas</span><span class="cron-schedule">9am</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Clawdbot Intel</span><span class="cron-schedule">11am</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Sync (Noon)</span><span class="cron-schedule">12pm</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Granola Sync (6pm)</span><span class="cron-schedule">6pm</span></div>
+          <div class="cron-item"><div class="cron-health error"></div><span class="cron-name">LinkedIn Challenge PM</span><span class="cron-schedule">4pm</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Desktop Cleanup</span><span class="cron-schedule">5am</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Session Search Index</span><span class="cron-schedule">6am</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 60m</span><span class="cron-schedule">11:15p</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 45m</span><span class="cron-schedule">11:30p</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 30m</span><span class="cron-schedule">11:45p</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Wind-down 15m</span><span class="cron-schedule">12am</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Sleep Lights Out</span><span class="cron-schedule">12:15a</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Playmaker Signals</span><span class="cron-schedule">Sun</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">Slack Team Review</span><span class="cron-schedule">Feb 9</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">WBD Slides Reminder</span><span class="cron-schedule">Jan 30</span></div>
+          <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">ChatGPT Plus Review</span><span class="cron-schedule">Feb 28</span></div>
+        </div>
+      </div>
+      
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Completed This Week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">23</div>
+          <div class="stat-label">Ideas in Backlog</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Open Loops</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">19</div>
+          <div class="stat-label">Cron Jobs</div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      Built by Hal 9001 🦞 • Data refreshes on heartbeats • Open: <code>file:///Users/Hal/clawd/dashboard/index.html</code>
+    </footer>
+  </div>
+</body>
+</html>
