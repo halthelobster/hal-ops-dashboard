@@ -1,0 +1,31 @@
+{
+  "lastUpdated": "2026-01-30T11:48:00.000Z",
+  "pendingApproval": [
+    {
+      "id": 1,
+      "type": "idea",
+      "title": "Add Eight Sleep data to Body section",
+      "description": "Include bed temperature, sleep score, and snoring detection alongside Oura data",
+      "addedAt": "2026-01-30T11:48:00.000Z",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "type": "idea",
+      "title": "Morning briefing cron with health snapshot",
+      "description": "7am daily message with Oura scores, calendar, top tasks, and anything needing your attention",
+      "addedAt": "2026-01-30T11:48:00.000Z",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "type": "idea", 
+      "title": "LinkedIn post performance tracker",
+      "description": "Track impressions/engagement on your LinkedIn challenge posts, surface what's working",
+      "addedAt": "2026-01-30T11:48:00.000Z",
+      "status": "pending"
+    }
+  ],
+  "approved": [],
+  "completed": []
+}
