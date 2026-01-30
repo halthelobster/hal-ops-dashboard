@@ -1338,7 +1338,7 @@
           <button class="mobile-cmd-btn" onclick="openCommandPalette()" title="Command Hal">
             💬
           </button>
-          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 4:27 AM</div>
+          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 6:44 AM</div>
           <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -1359,7 +1359,7 @@
     <!-- OPERATIONS VIEW -->
     <div id="operations" class="view active">
       <div class="grid">
-                <div class="card needs-jordan">
+                        <div class="card needs-jordan">
           <div class="card-header">
             <div class="card-title">🔴 NEEDS YOU</div>
             <span class="badge">4</span>
@@ -1474,7 +1474,7 @@
               <div class="health-label">Crons OK</div>
             </div>
             <div class="health-item">
-              <div class="health-value green">11</div>
+              <div class="health-value green">2</div>
               <div class="health-label">Agents</div>
             </div>
             <div class="health-item">
@@ -1509,7 +1509,7 @@
         </div>
         
         
-        <div class="card" id="system-status">
+                <div class="card" id="system-status">
           <div class="card-header">
             <div class="card-title">🖥️ System Status</div>
           </div>
@@ -1519,11 +1519,11 @@
               <div class="health-label">Clawdbot</div>
             </div>
             <div class="health-item">
-              <div class="health-value green" style="font-size: 20px;">11%</div>
+              <div class="health-value green" style="font-size: 20px;">31%</div>
               <div class="health-label">Main Context</div>
             </div>
             <div class="health-item">
-              <div class="health-value" style="font-size: 18px;">47KB</div>
+              <div class="health-value" style="font-size: 18px;">50KB</div>
               <div class="health-label">Memory Files</div>
             </div>
             <div class="health-item">
@@ -1531,6 +1531,7 @@
               <div class="health-label">Notes Files</div>
             </div>
           </div>
+        </div>
         </div>
         
         <div class="card">
@@ -1579,47 +1580,33 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">🤖 Active Agents</div>
-            <span class="badge green">11</span>
+            <span class="badge green">2</span>
           </div>
           <div class="work-item">
             <div class="work-status running"></div>
             <div class="work-info">
-              <div class="work-title">🔧 secure-email-reader-build (24% ctx)</div>
-              <div class="work-project">1m</div>
+              <div class="work-title">🎯 Main session (31% ctx)</div>
+              <div class="work-project">just now</div>
             </div>
           </div>
           <div class="work-item">
             <div class="work-status running"></div>
             <div class="work-info">
-              <div class="work-title">🎯 Main session (11% ctx)</div>
-              <div class="work-project">1m</div>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status running"></div>
-            <div class="work-info">
-              <div class="work-title">🔧 command-center-mobile-responsive (21% ctx)</div>
-              <div class="work-project">1m</div>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status running"></div>
-            <div class="work-info">
-              <div class="work-title">🔧 command-center-life-os-v2 (35% ctx)</div>
-              <div class="work-project">3m</div>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status running"></div>
-            <div class="work-info">
-              <div class="work-title">🔧 command-center-operations-v2</div>
-              <div class="work-project">3m</div>
+              <div class="work-title">⏰ e774893e-36c7-4d55-9c3d-e072dd5df50a (12% ctx)</div>
+              <div class="work-project">2m</div>
             </div>
           </div>        </div>
 
         <div class="card">
           <div class="card-header">
             <div class="card-title">📜 Activity Log</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">6:44 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
+            </div>
           </div>
           <div class="work-item">
             <div class="work-status" style="background: var(--accent-blue);"></div>
@@ -1669,13 +1656,6 @@
               <div class="work-title">Dashboard updated</div>
               <div class="work-project">3:28 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
             </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status" style="background: var(--accent-blue);"></div>
-            <div class="work-info">
-              <div class="work-title">Test activity from log-activity.sh</div>
-              <div class="work-project">3:28 AM — Verifying script works</div>
-            </div>
           </div>        </div>
         <div class="card" style="grid-column: 1 / -1;">
           <div class="card-header">
@@ -1683,65 +1663,65 @@
             <span class="badge orange">19/20</span>
           </div>
           <div class="cron-grid">
-            <div class="cron-item" title="Never run" style="opacity: 0.7;">
-              <div class="cron-health ok" style="background: var(--accent-orange);"></div>
-              <span class="cron-name">desktop-cleanup</span>
-              <span class="cron-schedule">in 32m</span>
-            </div>
-            <div class="cron-item" title="Last: 28m ago" style="">
+            <div class="cron-item" title="Last: 45m ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">auto-commit-workspace</span>
-              <span class="cron-schedule">in 2h (28m ago)</span>
+              <span class="cron-schedule">in 1h (45m ago)</span>
             </div>
-            <div class="cron-item" title="Never run" style="opacity: 0.7;">
-              <div class="cron-health ok" style="background: var(--accent-orange);"></div>
-              <span class="cron-name">session-search-index</span>
-              <span class="cron-schedule">in 2h</span>
-            </div>
-            <div class="cron-item" title="Last: 46m ago" style="">
-              <div class="cron-health ok" style=""></div>
-              <span class="cron-name">yen-intervention-watch</span>
-              <span class="cron-schedule">in 2h (46m ago)</span>
-            </div>
-            <div class="cron-item" title="Last: 19h ago" style="">
+            <div class="cron-item" title="Last: 22h ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">daily-ideas</span>
-              <span class="cron-schedule">in 5h (19h ago)</span>
+              <span class="cron-schedule">in 2h (22h ago)</span>
             </div>
             <div class="cron-item" title="Never run" style="opacity: 0.7;">
               <div class="cron-health ok" style="background: var(--accent-orange);"></div>
               <span class="cron-name">wbd-slides-reminder</span>
-              <span class="cron-schedule">in 5h</span>
+              <span class="cron-schedule">in 2h</span>
+            </div>
+            <div class="cron-item" title="Last: 2m ago" style="">
+              <div class="cron-health ok" style=""></div>
+              <span class="cron-name">yen-intervention-watch</span>
+              <span class="cron-schedule">in 3h (2m ago)</span>
             </div>
             <div class="cron-item" title="Last: 2d ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">clawdbot-intel</span>
-              <span class="cron-schedule">in 7h (2d ago)</span>
+              <span class="cron-schedule">in 4h (2d ago)</span>
             </div>
-            <div class="cron-item" title="Last: 16h ago" style="">
+            <div class="cron-item" title="Last: 19h ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">Granola Sync (Noon)</span>
-              <span class="cron-schedule">in 8h (16h ago)</span>
+              <span class="cron-schedule">in 5h (19h ago)</span>
             </div>
             <div class="cron-item" title="ERROR - Check logs" style="">
               <div class="cron-health error" style=""></div>
               <span class="cron-name">linkedin-challenge-af...</span>
-              <span class="cron-schedule">in 12h (12h ago)</span>
+              <span class="cron-schedule">in 9h (15h ago)</span>
             </div>
-            <div class="cron-item" title="Last: 10h ago" style="">
+            <div class="cron-item" title="Last: 13h ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">Granola Sync (6pm)</span>
-              <span class="cron-schedule">in 14h (10h ago)</span>
+              <span class="cron-schedule">in 11h (13h ago)</span>
             </div>
-            <div class="cron-item" title="Last: 8h ago" style="">
+            <div class="cron-item" title="Last: 11h ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">granola-daily-review</span>
-              <span class="cron-schedule">in 16h (8h ago)</span>
+              <span class="cron-schedule">in 13h (11h ago)</span>
             </div>
-            <div class="cron-item" title="Last: 5h ago" style="">
+            <div class="cron-item" title="Last: 7h ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">sleep-winddown-60</span>
-              <span class="cron-schedule">in 19h (5h ago)</span>
+              <span class="cron-schedule">in 17h (7h ago)</span>
+            </div>
+            <div class="cron-item" title="Last: 7h ago" style="">
+              <div class="cron-health ok" style=""></div>
+              <span class="cron-name">sleep-winddown-45</span>
+              <span class="cron-schedule">in 17h (7h ago)</span>
+            </div>
+            <div class="cron-item" title="Last: 7h ago" style="">
+              <div class="cron-health ok" style=""></div>
+              <span class="cron-name">sleep-winddown-30</span>
+              <span class="cron-schedule">in 17h (7h ago)</span>
             </div>          </div>
         </div>
       </div>
@@ -2418,19 +2398,30 @@
     
     async function approveItem(id) {
       const btn = event.target;
+      const item = document.querySelector(`.approval-item[data-id="${id}"]`);
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
       // Try WebSocket first
       if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ type: 'approve', payload: { id } }));
-        // Optimistic UI update
-        const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+        
+        // Success feedback
+        btn.textContent = '✓ Sent!';
+        btn.style.background = 'var(--accent-green)';
+        btn.style.color = 'white';
+        showToast('Sent to Hal ✓', 'success');
+        
+        // Animate out and remove after delay
         if (item) {
-          item.style.opacity = '0.5';
+          item.style.transition = 'all 0.5s ease';
           item.style.borderLeftColor = 'var(--accent-green)';
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(20px)';
+            setTimeout(() => item.remove(), 500);
+          }, 1000);
         }
-        showToast('Approved! ✓', 'success');
       } else {
         // Fallback to Telegram deep link (works from GitHub Pages)
         const telegramUrl = `https://t.me/Hal9001Bot?text=${encodeURIComponent('approve ' + id)}`;
@@ -2445,17 +2436,29 @@
       const reason = prompt('Rejection reason (optional):');
       
       const btn = event.target;
+      const item = document.querySelector(`.approval-item[data-id="${id}"]`);
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
       if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ type: 'reject', payload: { id, reason } }));
-        const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+        
+        // Success feedback
+        btn.textContent = '✗ Sent!';
+        btn.style.background = 'var(--accent-red)';
+        btn.style.color = 'white';
+        showToast('Rejection sent to Hal', 'success');
+        
+        // Animate out and remove
         if (item) {
-          item.style.opacity = '0.5';
+          item.style.transition = 'all 0.5s ease';
           item.style.borderLeftColor = 'var(--accent-red)';
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(20px)';
+            setTimeout(() => item.remove(), 500);
+          }, 1000);
         }
-        showToast('Rejected ✓', 'success');
       } else {
         // Fallback to Telegram deep link
         const msg = reason ? `reject ${id}: ${reason}` : `reject ${id}`;
