@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-30T11:33:57.156Z",
+  "lastUpdated": "2026-01-30T11:34:31.855Z",
   "health": {
     "crons": {
       "healthy": 19,
@@ -80,7 +80,7 @@
     },
     {
       "name": "auto-commit-workspace",
-      "schedule": "in 26m",
+      "schedule": "in 25m",
       "health": "ok",
       "lastRun": "2h ago",
       "error": null
@@ -271,9 +271,9 @@
     },
     {
       "key": "agent:main:subagent:af3c1195-bcd5-4914-be88-0f7ebac454c0",
-      "name": "af3c1195-bcd5-4914-b",
+      "name": "dashboard-builder-v3",
       "type": "subagent",
-      "age": "3m",
+      "age": "4m",
       "tokenUsage": {
         "used": "57k",
         "total": "200k",
