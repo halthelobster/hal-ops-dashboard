@@ -753,7 +753,7 @@
           <div class="cmd-hint" onclick="openCommandPalette()">
             <kbd>Cmd+K</kbd> Command Hal
           </div>
-          <div class="last-updated">Updated: Jan 30, 2026, 3:34 AM</div>
+          <div class="last-updated">Updated: Jan 30, 2026, 3:44 AM</div>
         </div>
       </div>
       <div class="tabs">
@@ -810,7 +810,7 @@
               <div class="health-label">Crons OK</div>
             </div>
             <div class="health-item">
-              <div class="health-value green">2</div>
+              <div class="health-value green">3</div>
               <div class="health-label">Agents</div>
             </div>
             <div class="health-item">
@@ -820,6 +820,26 @@
             <div class="health-item">
               <div class="health-value red">1</div>
               <div class="health-label">Blocked</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" id="body-health">
+          <div class="card-header">
+            <div class="card-title">💪 Body</div>
+          </div>
+          <div class="health-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="health-item">
+              <div class="health-value green" id="resilience-value">adequate</div>
+              <div class="health-label">Resilience</div>
+            </div>
+            <div class="health-item">
+              <div class="health-value " id="stress-value">unknown</div>
+              <div class="health-label">Stress</div>
+            </div>
+            <div class="health-item">
+              <div class="health-value" id="vo2-value">37 <span style="font-size: 14px; color: var(--accent-orange);">↓</span></div>
+              <div class="health-label">VO2 Max</div>
             </div>
           </div>
         </div>
@@ -870,12 +890,19 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">🤖 Active Agents</div>
-            <span class="badge green">2</span>
+            <span class="badge green">3</span>
           </div>
           <div class="work-item">
             <div class="work-status running"></div>
             <div class="work-info">
-              <div class="work-title">🎯 Main session (13% ctx)</div>
+              <div class="work-title">🎯 Main session (47% ctx)</div>
+              <div class="work-project">1m</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status running"></div>
+            <div class="work-info">
+              <div class="work-title">⏰ e774893e-36c7-4d55-9c3d-e072dd5df50a (12% ctx)</div>
               <div class="work-project">2m</div>
             </div>
           </div>
@@ -883,13 +910,20 @@
             <div class="work-status running"></div>
             <div class="work-info">
               <div class="work-title">🔧 dashboard-builder-v3 (28% ctx)</div>
-              <div class="work-project">4m</div>
+              <div class="work-project">14m</div>
             </div>
           </div>        </div>
 
         <div class="card">
           <div class="card-header">
             <div class="card-title">📜 Activity Log</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">3:44 AM — 19/20 crons OK, 0 tasks, 3 agents</div>
+            </div>
           </div>
           <div class="work-item">
             <div class="work-status" style="background: var(--accent-blue);"></div>
@@ -939,13 +973,6 @@
               <div class="work-title">Dashboard updated</div>
               <div class="work-project">3:27 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
             </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status" style="background: var(--accent-blue);"></div>
-            <div class="work-info">
-              <div class="work-title">Dashboard updated</div>
-              <div class="work-project">3:27 AM — 19/20 crons OK, 0 tasks, 0 agents</div>
-            </div>
           </div>        </div>
         <div class="card" style="grid-column: 1 / -1;">
           <div class="card-header">
@@ -953,10 +980,10 @@
             <span class="badge orange">19/20</span>
           </div>
           <div class="cron-grid">
-            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">yen-intervention-watch</span><span class="cron-schedule">in 8m</span></div>
-            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">auto-commit-workspace</span><span class="cron-schedule">in 25m</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">auto-commit-workspace</span><span class="cron-schedule">in 16m</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">desktop-cleanup</span><span class="cron-schedule">in 1h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">session-search-index</span><span class="cron-schedule">in 2h</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">yen-intervention-watch</span><span class="cron-schedule">in 3h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">daily-ideas</span><span class="cron-schedule">in 5h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">wbd-slides-reminder</span><span class="cron-schedule">in 5h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">clawdbot-intel</span><span class="cron-schedule">in 7h</span></div>

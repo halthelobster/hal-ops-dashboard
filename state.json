@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-30T11:34:31.855Z",
+  "lastUpdated": "2026-01-30T11:44:11.337Z",
   "health": {
     "crons": {
       "healthy": 19,
@@ -7,7 +7,7 @@
       "status": "warning"
     },
     "agents": {
-      "active": 2,
+      "active": 3,
       "idle": 0,
       "status": "ok"
     },
@@ -72,15 +72,8 @@
   ],
   "crons": [
     {
-      "name": "yen-intervention-watch",
-      "schedule": "in 8m",
-      "health": "ok",
-      "lastRun": "4h ago",
-      "error": null
-    },
-    {
       "name": "auto-commit-workspace",
-      "schedule": "in 25m",
+      "schedule": "in 16m",
       "health": "ok",
       "lastRun": "2h ago",
       "error": null
@@ -97,6 +90,13 @@
       "schedule": "in 2h",
       "health": "ok",
       "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "yen-intervention-watch",
+      "schedule": "in 3h",
+      "health": "ok",
+      "lastRun": "2m ago",
       "error": null
     },
     {
@@ -261,11 +261,23 @@
       "key": "agent:main:main",
       "name": "Main session",
       "type": "main",
+      "age": "1m",
+      "tokenUsage": {
+        "used": "94k",
+        "total": "200k",
+        "percent": 47
+      },
+      "isActive": true
+    },
+    {
+      "key": "agent:main:cron:e774893e-36c7-4d55-9c3d-e072dd5df50a",
+      "name": "e774893e-36c7-4d55-9c3d-e072dd5df50a",
+      "type": "cron",
       "age": "2m",
       "tokenUsage": {
-        "used": "26k",
+        "used": "24k",
         "total": "200k",
-        "percent": 13
+        "percent": 12
       },
       "isActive": true
     },
@@ -273,7 +285,7 @@
       "key": "agent:main:subagent:af3c1195-bcd5-4914-be88-0f7ebac454c0",
       "name": "dashboard-builder-v3",
       "type": "subagent",
-      "age": "4m",
+      "age": "14m",
       "tokenUsage": {
         "used": "57k",
         "total": "200k",
