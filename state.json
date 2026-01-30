@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-30T11:28:50.074Z",
+  "lastUpdated": "2026-01-30T11:32:58.223Z",
   "health": {
     "crons": {
       "healthy": 19,
@@ -7,7 +7,7 @@
       "status": "warning"
     },
     "agents": {
-      "active": 2,
+      "active": 1,
       "idle": 0,
       "status": "ok"
     },
@@ -73,79 +73,79 @@
   "crons": [
     {
       "name": "yen-intervention-watch",
-      "schedule": "in 13m",
+      "schedule": "in 9m",
       "health": "ok",
       "lastRun": "4h ago",
       "error": null
     },
     {
       "name": "auto-commit-workspace",
-      "schedule": "in 31m",
+      "schedule": "in 27m",
       "health": "ok",
-      "lastRun": "1h ago",
+      "lastRun": "2h ago",
       "error": null
     },
     {
       "name": "desktop-cleanup",
-      "schedule": "in 2h",
+      "schedule": "in 1h",
       "health": "ok",
       "lastRun": "-",
       "error": null
     },
     {
       "name": "session-search-index",
-      "schedule": "in 3h",
+      "schedule": "in 2h",
       "health": "ok",
       "lastRun": "-",
       "error": null
     },
     {
       "name": "daily-ideas",
-      "schedule": "in 6h",
+      "schedule": "in 5h",
       "health": "ok",
-      "lastRun": "18h ago",
+      "lastRun": "19h ago",
       "error": null
     },
     {
       "name": "wbd-slides-reminder",
-      "schedule": "in 6h",
+      "schedule": "in 5h",
       "health": "ok",
       "lastRun": "-",
       "error": null
     },
     {
       "name": "clawdbot-intel",
-      "schedule": "in 8h",
+      "schedule": "in 7h",
       "health": "ok",
       "lastRun": "2d ago",
       "error": null
     },
     {
       "name": "Granola Sync (Noon)",
-      "schedule": "in 9h",
+      "schedule": "in 8h",
       "health": "ok",
-      "lastRun": "15h ago",
+      "lastRun": "16h ago",
       "error": null
     },
     {
       "name": "linkedin-challenge-af...",
-      "schedule": "in 13h",
+      "schedule": "in 12h",
       "health": "error",
-      "lastRun": "11h ago",
+      "lastRun": "12h ago",
       "error": "See cron logs"
     },
     {
       "name": "Granola Sync (6pm)",
-      "schedule": "in 15h",
+      "schedule": "in 14h",
       "health": "ok",
-      "lastRun": "9h ago",
+      "lastRun": "10h ago",
       "error": null
     },
     {
       "name": "granola-daily-review",
-      "schedule": "in 17h",
+      "schedule": "in 16h",
       "health": "ok",
-      "lastRun": "7h ago",
+      "lastRun": "8h ago",
       "error": null
     },
     {
@@ -171,9 +171,9 @@
     },
     {
       "name": "sleep-winddown-15",
-      "schedule": "in 21h",
+      "schedule": "in 20h",
       "health": "ok",
-      "lastRun": "3h ago",
+      "lastRun": "4h ago",
       "error": null
     },
     {
@@ -256,26 +256,5 @@
     "openLoops": 7,
     "cronJobsTotal": 20
   },
-  "agents": [
-    {
-      "key": "agent:main:main",
-      "name": "Main session",
-      "type": "main",
-      "age": "3m",
-      "tokenUsage": {
-        "used": "179k",
-        "total": "200k",
-        "percent": 90
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subag...c454c0",
-      "name": "Sub-agent",
-      "type": "subagent",
-      "age": "4m",
-      "tokenUsage": null,
-      "isActive": true
-    }
-  ]
+  "agents": []
 }
