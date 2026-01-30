@@ -742,6 +742,196 @@
     
     footer a { color: var(--accent-blue); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
+    
+    /* =========================== */
+    /* INTERACTIVE FEATURES */
+    /* =========================== */
+    
+    /* Connection Indicator */
+    .connection-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      transition: background 0.3s;
+    }
+    
+    .connection-indicator.connected {
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+    
+    .connection-indicator.disconnected {
+      background: var(--accent-orange);
+      animation: blink 1.5s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    
+    /* Approval Action Buttons */
+    .approval-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .btn-approve {
+      background: rgba(63, 185, 80, 0.2);
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+    }
+    
+    .btn-approve:hover:not(:disabled) {
+      background: var(--accent-green);
+      color: white;
+    }
+    
+    .btn-reject {
+      background: rgba(248, 81, 73, 0.1);
+      color: var(--accent-red);
+      border: 1px solid transparent;
+    }
+    
+    .btn-reject:hover:not(:disabled) {
+      background: rgba(248, 81, 73, 0.2);
+      border-color: var(--accent-red);
+    }
+    
+    /* Toast Notifications */
+    #toast-container {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .toast {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    
+    .toast-success {
+      border-left: 4px solid var(--accent-green);
+    }
+    
+    .toast-error {
+      border-left: 4px solid var(--accent-red);
+    }
+    
+    .toast-info {
+      border-left: 4px solid var(--accent-blue);
+    }
+    
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Loading State */
+    .loading {
+      position: relative;
+      pointer-events: none;
+    }
+    
+    .loading::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 17, 23, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Smooth transitions for data updates */
+    .approval-item {
+      transition: opacity 0.3s, border-color 0.3s, transform 0.2s;
+    }
+    
+    .approval-item:hover {
+      transform: translateX(4px);
+    }
+    
+    /* Mobile Responsive Improvements */
+    @media (max-width: 600px) {
+      .container { padding: 16px; }
+      
+      h1 { font-size: 22px; }
+      h1 .logo { font-size: 26px; }
+      
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .cmd-hint { display: none; }
+      
+      .tabs { overflow-x: auto; }
+      .tab { padding: 10px 16px; font-size: 13px; }
+      
+      .approval-actions {
+        flex-direction: column;
+      }
+      
+      .btn { width: 100%; }
+      
+      .command-palette { width: 95vw; }
+      
+      #toast-container {
+        left: 16px;
+        right: 16px;
+        bottom: 80px;
+      }
+      
+      .toast { font-size: 13px; }
+    }
   </style>
 </head>
 <body>
@@ -753,7 +943,7 @@
           <div class="cmd-hint" onclick="openCommandPalette()">
             <kbd>Cmd+K</kbd> Command Hal
           </div>
-          <div class="last-updated">Updated: Jan 30, 2026, 3:44 AM</div>
+          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 3:44 AM</div>
         </div>
       </div>
       <div class="tabs">
@@ -806,28 +996,40 @@
             <span class="badge green" id="approval-count">3</span>
           </div>
           <div id="approval-items">
-            <div class="need-item" style="border-left-color: var(--accent-blue);">
+            <div class="need-item approval-item" style="border-left-color: var(--accent-blue);" data-id="1">
               <h4>[1] Add Eight Sleep data to Body section</h4>
               <p>Include bed temperature, sleep score, and snoring detection alongside Oura data</p>
               <div class="need-meta">
                 <span>💡 Idea</span>
-                <span>Reply: "approve 1"</span>
+                <span>Dashboard</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-approve" onclick="approveItem(1)">✓ Approve</button>
+                <button class="btn btn-reject" onclick="rejectItem(1)">✗ Reject</button>
               </div>
             </div>
-            <div class="need-item" style="border-left-color: var(--accent-blue);">
+            <div class="need-item approval-item" style="border-left-color: var(--accent-blue);" data-id="2">
               <h4>[2] Morning briefing cron with health snapshot</h4>
               <p>7am daily message with Oura scores, calendar, top tasks, and anything needing your attention</p>
               <div class="need-meta">
                 <span>💡 Idea</span>
-                <span>Reply: "approve 2"</span>
+                <span>Dashboard</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-approve" onclick="approveItem(2)">✓ Approve</button>
+                <button class="btn btn-reject" onclick="rejectItem(2)">✗ Reject</button>
               </div>
             </div>
-            <div class="need-item" style="border-left-color: var(--accent-blue);">
+            <div class="need-item approval-item" style="border-left-color: var(--accent-blue);" data-id="3">
               <h4>[3] LinkedIn post performance tracker</h4>
               <p>Track impressions/engagement on your LinkedIn challenge posts, surface what's working</p>
               <div class="need-meta">
                 <span>💡 Idea</span>
-                <span>Reply: "approve 3"</span>
+                <span>Dashboard</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-approve" onclick="approveItem(3)">✓ Approve</button>
+                <button class="btn btn-reject" onclick="rejectItem(3)">✗ Reject</button>
               </div>
             </div>
           </div>
@@ -1035,6 +1237,60 @@
             <div class="north-star-vision">Live on a sailboat, circumnavigate the world</div>
             <div class="north-star-tagline">$1M/year from anywhere. Freedom, not just wealth.</div>
             <div class="north-star-horizon">Horizon: 1-3 years to launch</div>
+          </div>
+        </div>
+        
+        <!-- Q1 2026 ROCKS -->
+        <div class="card" id="q1-rocks" style="grid-column: 1 / -1; background: linear-gradient(135deg, #0a1a1a 0%, var(--bg-secondary) 100%); border-color: var(--accent-purple); border-width: 2px;">
+          <div class="card-header">
+            <div class="card-title" style="color: var(--accent-purple);">🎯 Q1 2026 Rocks</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="badge blue" id="q1-days-left">60d left</span>
+              <span class="badge" id="q1-rock-count">0/8</span>
+            </div>
+          </div>
+          <div class="goal-progress-container" style="margin-bottom: 16px;">
+            <div class="goal-progress-header">
+              <span class="goal-progress-label">Overall Q1 Progress</span>
+              <span class="goal-progress-value" id="q1-progress">0%</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-fill" id="q1-progress-bar" style="width: 0%; background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));"></div>
+            </div>
+          </div>
+          <div id="rocks-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Land 1 new consulting client (non-WB)</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Bright Black website relaunched</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">LinkedIn: 1 post/week for 10 weeks</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Hit 175 lbs</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Book 1 speaking gig or podcast</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Have 3+ quality dates</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Reach out to 5 former colleagues</div></div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-check"></div>
+              <div class="milestone-info"><div class="milestone-name">Playmakers Guild: 10 new members</div></div>
+            </div>
           </div>
         </div>
         
@@ -1263,8 +1519,70 @@
             </div>
           </div>
         </div>
+        <!-- goals-grid end -->
+        
+        <!-- WEEKLY SCORECARD -->
+        <div class="card" id="weekly-scorecard" style="grid-column: 1 / -1;">
+          <div class="card-header">
+            <div class="card-title">📊 Weekly Scorecard</div>
+            <span class="badge blue">This Week</span>
+          </div>
+          <div id="scorecard-metrics">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">LinkedIn posts published</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 3</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">Warm outreach messages sent</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 3</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">Sales/discovery calls</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 1</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">Workouts completed</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 3</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">Weight (Monday AM)</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: ↓ trend</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 14px;">Dates / social events</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 1</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+              <span style="font-size: 14px;">Hours deep work (non-WB)</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Target: 5</span>
+                <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- weekly-scorecard end -->
       </div>
     </div>
+    <!-- LIFE OS VIEW end -->
     
     <footer>
       <span style="font-weight: 600; color: var(--accent-purple);">Hal Labs</span> 🦞 • Built by Hal 9001 • <a href="https://t.me/ClawdbotBot" target="_blank">Message Hal</a>
@@ -1290,7 +1608,387 @@
   </a>
   
   <script>
-    // Tab switching
+    // =============================================================================
+    // WebSocket Connection
+    // =============================================================================
+    
+    let ws = null;
+    let wsReconnectTimer = null;
+    let wsReconnectAttempts = 0;
+    const WS_MAX_RECONNECT = 10;
+    const WS_RECONNECT_DELAY = 3000;
+    
+    function connectWebSocket() {
+      const wsUrl = `ws://${window.location.host}/`;
+      console.log('[ws] Connecting to', wsUrl);
+      
+      try {
+        ws = new WebSocket(wsUrl);
+        
+        ws.onopen = () => {
+          console.log('[ws] Connected');
+          wsReconnectAttempts = 0;
+          updateConnectionStatus(true);
+        };
+        
+        ws.onclose = () => {
+          console.log('[ws] Disconnected');
+          updateConnectionStatus(false);
+          scheduleReconnect();
+        };
+        
+        ws.onerror = (error) => {
+          console.error('[ws] Error:', error);
+          updateConnectionStatus(false);
+        };
+        
+        ws.onmessage = (event) => {
+          try {
+            const { type, data, success, error, response } = JSON.parse(event.data);
+            console.log('[ws] Received:', type);
+            
+            switch (type) {
+              case 'state':
+                updateDashboardState(data);
+                break;
+              case 'queue':
+                updateApprovalQueue(data);
+                break;
+              case 'activity':
+                updateActivityLog(data);
+                break;
+              case 'ack':
+                // Approval/rejection acknowledged
+                if (success) {
+                  showToast('Action sent to Hal ✓', 'success');
+                } else {
+                  showToast('Failed: ' + (error || 'Unknown error'), 'error');
+                }
+                break;
+              case 'response':
+                // Command response
+                if (success) {
+                  showToast('Command sent to Hal ✓', 'success');
+                } else {
+                  showToast('Failed: ' + (error || 'Unknown error'), 'error');
+                }
+                break;
+              case 'pong':
+                // Heartbeat response
+                break;
+            }
+          } catch (e) {
+            console.error('[ws] Parse error:', e);
+          }
+        };
+      } catch (e) {
+        console.error('[ws] Connection error:', e);
+        scheduleReconnect();
+      }
+    }
+    
+    function scheduleReconnect() {
+      if (wsReconnectTimer) return;
+      if (wsReconnectAttempts >= WS_MAX_RECONNECT) {
+        console.log('[ws] Max reconnect attempts reached, falling back to polling');
+        startPolling();
+        return;
+      }
+      
+      wsReconnectAttempts++;
+      wsReconnectTimer = setTimeout(() => {
+        wsReconnectTimer = null;
+        connectWebSocket();
+      }, WS_RECONNECT_DELAY);
+    }
+    
+    function updateConnectionStatus(connected) {
+      const indicator = document.getElementById('connection-status');
+      if (indicator) {
+        indicator.className = 'connection-indicator ' + (connected ? 'connected' : 'disconnected');
+        indicator.title = connected ? 'Connected (live updates)' : 'Disconnected (polling)';
+      }
+    }
+    
+    // =============================================================================
+    // Polling Fallback
+    // =============================================================================
+    
+    let pollTimer = null;
+    const POLL_INTERVAL = 30000; // 30 seconds
+    
+    function startPolling() {
+      if (pollTimer) return;
+      console.log('[poll] Starting polling fallback');
+      pollTimer = setInterval(fetchUpdates, POLL_INTERVAL);
+    }
+    
+    function stopPolling() {
+      if (pollTimer) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+      }
+    }
+    
+    async function fetchUpdates() {
+      try {
+        const [stateRes, queueRes] = await Promise.all([
+          fetch('/api/state'),
+          fetch('/api/queue')
+        ]);
+        
+        if (stateRes.ok) {
+          const state = await stateRes.json();
+          updateDashboardState(state);
+        }
+        
+        if (queueRes.ok) {
+          const queue = await queueRes.json();
+          updateApprovalQueue(queue);
+        }
+        
+        updateLastUpdated();
+      } catch (e) {
+        console.error('[poll] Error:', e);
+      }
+    }
+    
+    // =============================================================================
+    // UI Updates
+    // =============================================================================
+    
+    function updateLastUpdated() {
+      const el = document.querySelector('.last-updated');
+      if (el) {
+        const now = new Date();
+        el.textContent = 'Updated: ' + now.toLocaleString('en-US', {
+          month: 'short', day: 'numeric', year: 'numeric',
+          hour: 'numeric', minute: '2-digit', hour12: true
+        });
+      }
+    }
+    
+    function updateDashboardState(data) {
+      updateLastUpdated();
+      // State updates can trigger section refreshes
+      console.log('[ui] State updated:', data);
+    }
+    
+    function updateApprovalQueue(data) {
+      if (!data || !data.items) return;
+      
+      const container = document.getElementById('approval-items');
+      const countBadge = document.getElementById('approval-count');
+      
+      if (countBadge) {
+        countBadge.textContent = data.items.length;
+      }
+      
+      if (container) {
+        container.innerHTML = data.items.map((item, idx) => `
+          <div class="need-item approval-item" style="border-left-color: var(--accent-blue);" data-id="${item.id || idx + 1}">
+            <h4>[${item.id || idx + 1}] ${escapeHtml(item.title)}</h4>
+            <p>${escapeHtml(item.description || '')}</p>
+            <div class="need-meta">
+              <span>${item.type === 'idea' ? '💡 Idea' : '📋 Task'}</span>
+              <span>${item.source || 'Dashboard'}</span>
+            </div>
+            <div class="approval-actions">
+              <button class="btn btn-approve" onclick="approveItem(${item.id || idx + 1})">
+                ✓ Approve
+              </button>
+              <button class="btn btn-reject" onclick="rejectItem(${item.id || idx + 1})">
+                ✗ Reject
+              </button>
+            </div>
+          </div>
+        `).join('') || '<div style="padding: 12px 0; color: var(--text-muted);">No pending approvals</div>';
+        
+        // Add fade-in animation
+        container.querySelectorAll('.approval-item').forEach((el, i) => {
+          el.style.animation = `fadeIn 0.3s ease ${i * 0.1}s both`;
+        });
+      }
+      
+      updateLastUpdated();
+    }
+    
+    function updateActivityLog(data) {
+      // Activity log updates
+      console.log('[ui] Activity updated:', data);
+      updateLastUpdated();
+    }
+    
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    
+    // =============================================================================
+    // Approval Actions
+    // =============================================================================
+    
+    async function approveItem(id) {
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      
+      // Try WebSocket first
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'approve', payload: { id } }));
+        // Optimistic UI update
+        const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+        if (item) {
+          item.style.opacity = '0.5';
+          item.style.borderLeftColor = 'var(--accent-green)';
+        }
+      } else {
+        // Fallback to REST
+        try {
+          const res = await fetch(`/api/approve/${id}`, { method: 'POST' });
+          const data = await res.json();
+          if (data.success) {
+            showToast('Approved! Hal notified ✓', 'success');
+            const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+            if (item) item.remove();
+          } else {
+            showToast('Failed: ' + data.message, 'error');
+            btn.disabled = false;
+            btn.textContent = '✓ Approve';
+          }
+        } catch (e) {
+          showToast('Network error', 'error');
+          btn.disabled = false;
+          btn.textContent = '✓ Approve';
+        }
+      }
+    }
+    
+    async function rejectItem(id) {
+      const reason = prompt('Rejection reason (optional):');
+      
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'reject', payload: { id, reason } }));
+        const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+        if (item) {
+          item.style.opacity = '0.5';
+          item.style.borderLeftColor = 'var(--accent-red)';
+        }
+      } else {
+        try {
+          const res = await fetch(`/api/reject/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reason })
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast('Rejected. Hal notified.', 'success');
+            const item = document.querySelector(`.approval-item[data-id="${id}"]`);
+            if (item) item.remove();
+          } else {
+            showToast('Failed: ' + data.message, 'error');
+            btn.disabled = false;
+            btn.textContent = '✗ Reject';
+          }
+        } catch (e) {
+          showToast('Network error', 'error');
+          btn.disabled = false;
+          btn.textContent = '✗ Reject';
+        }
+      }
+    }
+    
+    // =============================================================================
+    // Command Palette
+    // =============================================================================
+    
+    function openCommandPalette() {
+      document.getElementById('commandOverlay').classList.add('active');
+      document.getElementById('commandInput').focus();
+    }
+    
+    function closeCommandPalette() {
+      document.getElementById('commandOverlay').classList.remove('active');
+      document.getElementById('commandInput').value = '';
+    }
+    
+    async function sendCommand(text) {
+      if (!text.trim()) return;
+      
+      const input = document.getElementById('commandInput');
+      input.disabled = true;
+      input.placeholder = 'Sending...';
+      
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'command', payload: { text } }));
+        closeCommandPalette();
+        showToast('Command sent to Hal', 'success');
+      } else {
+        try {
+          const res = await fetch('/api/command', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast('Command sent to Hal ✓', 'success');
+            closeCommandPalette();
+          } else {
+            showToast('Failed: ' + (data.error || 'Unknown error'), 'error');
+          }
+        } catch (e) {
+          showToast('Network error', 'error');
+        }
+      }
+      
+      input.disabled = false;
+      input.placeholder = 'Ask Hal anything...';
+      input.value = '';
+    }
+    
+    // =============================================================================
+    // Toast Notifications
+    // =============================================================================
+    
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container') || createToastContainer();
+      
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.textContent = message;
+      
+      container.appendChild(toast);
+      
+      // Trigger animation
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+    
+    function createToastContainer() {
+      const container = document.createElement('div');
+      container.id = 'toast-container';
+      document.body.appendChild(container);
+      return container;
+    }
+    
+    // =============================================================================
+    // Tab Switching
+    // =============================================================================
+    
     document.querySelectorAll('.tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1300,7 +1998,10 @@
       });
     });
     
-    // Goal card expansion
+    // =============================================================================
+    // Goal Card Expansion
+    // =============================================================================
+    
     function toggleGoal(card) {
       const wasExpanded = card.classList.contains('expanded');
       document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('expanded'));
@@ -1309,11 +2010,9 @@
       }
     }
     
-    // Command palette
-    function openCommandPalette() {
-      document.getElementById('commandOverlay').classList.add('active');
-      document.getElementById('commandInput').focus();
-    }
+    // =============================================================================
+    // Keyboard Shortcuts
+    // =============================================================================
     
     document.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -1321,24 +2020,43 @@
         openCommandPalette();
       }
       if (e.key === 'Escape') {
-        document.getElementById('commandOverlay').classList.remove('active');
+        closeCommandPalette();
       }
     });
     
     document.getElementById('commandOverlay').addEventListener('click', (e) => {
       if (e.target.id === 'commandOverlay') {
-        e.target.classList.remove('active');
+        closeCommandPalette();
       }
     });
     
     document.getElementById('commandInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && e.target.value.trim()) {
-        const command = e.target.value.trim();
-        // For now, open Telegram with the command
-        window.open('https://t.me/ClawdbotBot?text=' + encodeURIComponent(command), '_blank');
-        e.target.value = '';
-        document.getElementById('commandOverlay').classList.remove('active');
+        e.preventDefault();
+        sendCommand(e.target.value.trim());
       }
+    });
+    
+    // =============================================================================
+    // Initialize
+    // =============================================================================
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // Connect WebSocket
+      connectWebSocket();
+      
+      // Initial fetch
+      fetchUpdates();
+      
+      // Update timestamp immediately
+      updateLastUpdated();
+      
+      // Start polling as backup (will be active if WS disconnects)
+      setTimeout(() => {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+          startPolling();
+        }
+      }, 5000);
     });
   </script>
 </body>
