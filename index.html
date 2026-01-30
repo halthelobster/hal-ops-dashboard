@@ -1338,7 +1338,7 @@
           <button class="mobile-cmd-btn" onclick="openCommandPalette()" title="Command Hal">
             💬
           </button>
-          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 6:55 AM</div>
+          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 6:56 AM</div>
           <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -1359,7 +1359,7 @@
     <!-- OPERATIONS VIEW -->
     <div id="operations" class="view active">
       <div class="grid">
-                                <div class="card needs-jordan">
+                                        <div class="card needs-jordan">
           <div class="card-header">
             <div class="card-title">🔴 NEEDS YOU</div>
             <span class="badge">4</span>
@@ -1498,7 +1498,7 @@
               <div class="health-label">Resilience</div>
             </div>
             <div class="health-item">
-              <div class="health-value " id="stress-value">unknown</div>
+              <div class="health-value red" id="stress-value">stressful</div>
               <div class="health-label">Stress</div>
             </div>
             <div class="health-item">
@@ -1509,7 +1509,7 @@
         </div>
         
         
-                        <div class="card" id="system-status">
+                                <div class="card" id="system-status">
           <div class="card-header">
             <div class="card-title">🖥️ System Status</div>
           </div>
@@ -1531,6 +1531,7 @@
               <div class="health-label">Notes Files</div>
             </div>
           </div>
+        </div>
         </div>
         </div>
         </div>
@@ -1594,13 +1595,20 @@
             <div class="work-status running"></div>
             <div class="work-info">
               <div class="work-title">⏰ e774893e-36c7-4d55-9c3d-e072dd5df50a (12% ctx)</div>
-              <div class="work-project">12m</div>
+              <div class="work-project">14m</div>
             </div>
           </div>        </div>
 
         <div class="card">
           <div class="card-header">
             <div class="card-title">📜 Activity Log</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">6:56 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
+            </div>
           </div>
           <div class="work-item">
             <div class="work-status" style="background: var(--accent-blue);"></div>
@@ -1650,13 +1658,6 @@
               <div class="work-title">Dashboard updated</div>
               <div class="work-project">3:33 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
             </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status" style="background: var(--accent-blue);"></div>
-            <div class="work-info">
-              <div class="work-title">Dashboard updated</div>
-              <div class="work-project">3:32 AM — 19/20 crons OK, 0 tasks, 1 agents</div>
-            </div>
           </div>        </div>
         <div class="card" style="grid-column: 1 / -1;">
           <div class="card-header">
@@ -1664,10 +1665,10 @@
             <span class="badge orange">19/20</span>
           </div>
           <div class="cron-grid">
-            <div class="cron-item" title="Last: 55m ago" style="">
+            <div class="cron-item" title="Last: 57m ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">auto-commit-workspace</span>
-              <span class="cron-schedule">in 1h (55m ago)</span>
+              <span class="cron-schedule">in 1h (57m ago)</span>
             </div>
             <div class="cron-item" title="Last: 22h ago" style="">
               <div class="cron-health ok" style=""></div>
@@ -1679,10 +1680,10 @@
               <span class="cron-name">wbd-slides-reminder</span>
               <span class="cron-schedule">in 2h</span>
             </div>
-            <div class="cron-item" title="Last: 13m ago" style="">
+            <div class="cron-item" title="Last: 14m ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">yen-intervention-watch</span>
-              <span class="cron-schedule">in 3h (13m ago)</span>
+              <span class="cron-schedule">in 3h (14m ago)</span>
             </div>
             <div class="cron-item" title="Last: 2d ago" style="">
               <div class="cron-health ok" style=""></div>
@@ -2405,31 +2406,34 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
-      // Try WebSocket first
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({ type: 'approve', payload: { id } }));
+      try {
+        // Try REST API (works with Tailscale)
+        const res = await fetch(`/api/approve/${id}`, { method: 'POST' });
+        const data = await res.json();
         
-        // Success feedback
-        btn.textContent = '✓ Sent!';
-        btn.style.background = 'var(--accent-green)';
-        btn.style.color = 'white';
-        showToast('Sent to Hal ✓', 'success');
-        
-        // Animate out and remove after delay
-        if (item) {
-          item.style.transition = 'all 0.5s ease';
-          item.style.borderLeftColor = 'var(--accent-green)';
-          setTimeout(() => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(20px)';
-            setTimeout(() => item.remove(), 500);
-          }, 1000);
+        if (data.success) {
+          // Success feedback
+          btn.textContent = '✓ Sent!';
+          btn.style.background = 'var(--accent-green)';
+          btn.style.color = 'white';
+          showToast('Sent to Hal ✓', 'success');
+          
+          // Animate out and remove after delay
+          if (item) {
+            item.style.transition = 'all 0.5s ease';
+            item.style.borderLeftColor = 'var(--accent-green)';
+            setTimeout(() => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateX(20px)';
+              setTimeout(() => item.remove(), 500);
+            }, 1000);
+          }
+        } else {
+          throw new Error(data.message || 'Approval failed');
         }
-      } else {
-        // Fallback to Telegram deep link (works from GitHub Pages)
-        const telegramUrl = `https://t.me/Hal9001Bot?text=${encodeURIComponent('approve ' + id)}`;
-        window.open(telegramUrl, '_blank');
-        showToast('Opening Telegram to approve...', 'success');
+      } catch (error) {
+        console.error('Approve error:', error);
+        showToast('Error: ' + error.message, 'error');
         btn.disabled = false;
         btn.textContent = '✓ Approve';
       }
@@ -2443,38 +2447,40 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
       
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({ type: 'reject', payload: { id, reason } }));
+      try {
+        // Try REST API
+        const res = await fetch(`/api/reject/${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reason })
+        });
+        const data = await res.json();
         
-        // Success feedback
-        btn.textContent = '✗ Sent!';
-        btn.style.background = 'var(--accent-red)';
-        btn.style.color = 'white';
-        showToast('Rejection sent to Hal', 'success');
-        
-        // Animate out and remove
-        if (item) {
-          item.style.transition = 'all 0.5s ease';
-          item.style.borderLeftColor = 'var(--accent-red)';
-          setTimeout(() => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(20px)';
-            setTimeout(() => item.remove(), 500);
-          }, 1000);
+        if (data.success) {
+          // Success feedback
+          btn.textContent = '✗ Sent!';
+          btn.style.background = 'var(--accent-red)';
+          btn.style.color = 'white';
+          showToast('Rejection sent to Hal', 'success');
+          
+          // Animate out and remove
+          if (item) {
+            item.style.transition = 'all 0.5s ease';
+            item.style.borderLeftColor = 'var(--accent-red)';
+            setTimeout(() => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateX(20px)';
+              setTimeout(() => item.remove(), 500);
+            }, 1000);
+          }
+        } else {
+          throw new Error(data.message || 'Rejection failed');
         }
-      } else {
-        // Fallback to Telegram deep link
-        const msg = reason ? `reject ${id}: ${reason}` : `reject ${id}`;
-        const telegramUrl = `https://t.me/Hal9001Bot?text=${encodeURIComponent(msg)}`;
-        window.open(telegramUrl, '_blank');
-        showToast('Opening Telegram to reject...', 'success');
+      } catch (error) {
+        console.error('Reject error:', error);
+        showToast('Error: ' + error.message, 'error');
         btn.disabled = false;
         btn.textContent = '✗ Reject';
-        } catch (e) {
-          showToast('Network error', 'error');
-          btn.disabled = false;
-          btn.textContent = '✗ Reject';
-        }
       }
     }
     
