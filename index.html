@@ -753,7 +753,7 @@
           <div class="cmd-hint" onclick="openCommandPalette()">
             <kbd>Cmd+K</kbd> Command Hal
           </div>
-          <div class="last-updated">Updated: Jan 30, 2026, 3:25 AM</div>
+          <div class="last-updated">Updated: Jan 30, 2026, 3:28 AM</div>
         </div>
       </div>
       <div class="tabs">
@@ -810,7 +810,7 @@
               <div class="health-label">Crons OK</div>
             </div>
             <div class="health-item">
-              <div class="health-value green">1</div>
+              <div class="health-value green">2</div>
               <div class="health-label">Agents</div>
             </div>
             <div class="health-item">
@@ -866,15 +866,81 @@
             </div>
           </div>
         </div>
-        
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🤖 Active Agents</div>
+            <span class="badge green">2</span>
+          </div>
+          <div class="work-item">
+            <div class="work-status running"></div>
+            <div class="work-info">
+              <div class="work-title">🎯 Main session (90% ctx)</div>
+              <div class="work-project">3m</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status running"></div>
+            <div class="work-info">
+              <div class="work-title">🔧 Sub-agent</div>
+              <div class="work-project">4m</div>
+            </div>
+          </div>        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📜 Activity Log</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">3:28 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Test activity from log-activity.sh</div>
+              <div class="work-project">3:28 AM — Verifying script works</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">3:28 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">3:27 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">3:27 AM — 19/20 crons OK, 0 tasks, 0 agents</div>
+            </div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updater initialized</div>
+              <div class="work-project">12:45 AM — Activity log system created</div>
+            </div>
+          </div>        </div>
         <div class="card" style="grid-column: 1 / -1;">
           <div class="card-header">
             <div class="card-title">🔄 Cron Jobs</div>
             <span class="badge orange">19/20</span>
           </div>
           <div class="cron-grid">
-            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">yen-intervention-watch</span><span class="cron-schedule">in 17m</span></div>
-            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">auto-commit-workspace</span><span class="cron-schedule">in 35m</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">yen-intervention-watch</span><span class="cron-schedule">in 13m</span></div>
+            <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">auto-commit-workspace</span><span class="cron-schedule">in 31m</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">desktop-cleanup</span><span class="cron-schedule">in 2h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">session-search-index</span><span class="cron-schedule">in 3h</span></div>
             <div class="cron-item"><div class="cron-health ok"></div><span class="cron-name">daily-ideas</span><span class="cron-schedule">in 6h</span></div>

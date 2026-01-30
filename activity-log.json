@@ -1,5 +1,35 @@
 [
   {
+    "timestamp": "2026-01-30T11:28:50.074Z",
+    "action": "Dashboard updated",
+    "details": "19/20 crons OK, 0 tasks, 2 agents",
+    "source": "system"
+  },
+  {
+    "timestamp": "2026-01-30T11:28:44.000Z",
+    "action": "Test activity from log-activity.sh",
+    "details": "Verifying script works",
+    "source": "script"
+  },
+  {
+    "timestamp": "2026-01-30T11:28:25.757Z",
+    "action": "Dashboard updated",
+    "details": "19/20 crons OK, 0 tasks, 2 agents",
+    "source": "system"
+  },
+  {
+    "timestamp": "2026-01-30T11:27:53.358Z",
+    "action": "Dashboard updated",
+    "details": "19/20 crons OK, 0 tasks, 2 agents",
+    "source": "system"
+  },
+  {
+    "timestamp": "2026-01-30T11:27:14.443Z",
+    "action": "Dashboard updated",
+    "details": "19/20 crons OK, 0 tasks, 0 agents",
+    "source": "system"
+  },
+  {
     "timestamp": "2026-01-30T00:45:00-08:00",
     "action": "Dashboard updater initialized",
     "details": "Activity log system created",
