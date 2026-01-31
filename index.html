@@ -1338,7 +1338,7 @@
           <button class="mobile-cmd-btn" onclick="openCommandPalette()" title="Command Hal">
             💬
           </button>
-          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 6:50 PM</div>
+          <div class="last-updated"><span id="connection-status" class="connection-indicator disconnected" title="Connecting..."></span>Updated: Jan 30, 2026, 6:51 PM</div>
           <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -1359,24 +1359,24 @@
     <!-- OPERATIONS VIEW -->
     <div id="operations" class="view active">
       <div class="grid">
-                                                <div class="card needs-jordan">
+                                                        <div class="card needs-jordan">
           <div class="card-header">
             <div class="card-title">🔴 NEEDS YOU</div>
             <span class="badge">5</span>
-          </div>
-          <div class="need-item" style="border-left-color: var(--accent-red);">
-            <h4>Fix Gmail API Access</h4>
-            <p>Domain-wide delegation scopes may have been removed. Need to check Admin Console tomorrow.</p>
-            <div class="need-meta">
-              <span>📋 AI Stack &amp; Tools</span>
-              <span>⚡ P1</span>
-            </div>
           </div>
           <div class="need-item" style="border-left-color: var(--accent-orange);">
             <h4>Review &amp; Submit SaaStr Application</h4>
             <p>Draft ready at notes/projects/saastr-submission/. Three talk options written.</p>
             <div class="need-meta">
               <span>📋 Speaking Circuit</span>
+              <span>⚡ P2</span>
+            </div>
+          </div>
+          <div class="need-item" style="border-left-color: var(--accent-orange);">
+            <h4>Review Positioning Sub-Agent Output</h4>
+            <p>Comprehensive positioning docs ready in notes/projects/positioning-council/</p>
+            <div class="need-meta">
+              <span>📋 Website &amp; Positioning</span>
               <span>⚡ P2</span>
             </div>
           </div>
@@ -1517,7 +1517,7 @@
         </div>
         
         
-                                        <div class="card" id="system-status">
+                                                <div class="card" id="system-status">
           <div class="card-header">
             <div class="card-title">🖥️ System Status</div>
           </div>
@@ -1527,7 +1527,7 @@
               <div class="health-label">Clawdbot</div>
             </div>
             <div class="health-item">
-              <div class="health-value orange" style="font-size: 20px;">76%</div>
+              <div class="health-value red" style="font-size: 20px;">84%</div>
               <div class="health-label">Main Context</div>
             </div>
             <div class="health-item">
@@ -1539,6 +1539,7 @@
               <div class="health-label">Notes Files</div>
             </div>
           </div>
+        </div>
         </div>
         </div>
         </div>
@@ -1596,7 +1597,7 @@
           <div class="work-item">
             <div class="work-status running"></div>
             <div class="work-info">
-              <div class="work-title">🎯 Main session (76% ctx)</div>
+              <div class="work-title">🎯 Main session (84% ctx)</div>
               <div class="work-project">just now</div>
             </div>
           </div>        </div>
@@ -1604,6 +1605,13 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">📜 Activity Log</div>
+          </div>
+          <div class="work-item">
+            <div class="work-status" style="background: var(--accent-blue);"></div>
+            <div class="work-info">
+              <div class="work-title">Dashboard updated</div>
+              <div class="work-project">6:51 PM — 17/17 crons OK, 0 tasks, 1 agents</div>
+            </div>
           </div>
           <div class="work-item">
             <div class="work-status" style="background: var(--accent-blue);"></div>
@@ -1653,13 +1661,6 @@
               <div class="work-title">Dashboard updated</div>
               <div class="work-project">3:28 AM — 19/20 crons OK, 0 tasks, 2 agents</div>
             </div>
-          </div>
-          <div class="work-item">
-            <div class="work-status" style="background: var(--accent-blue);"></div>
-            <div class="work-info">
-              <div class="work-title">Test activity from log-activity.sh</div>
-              <div class="work-project">3:28 AM — Verifying script works</div>
-            </div>
           </div>        </div>
         <div class="card" style="grid-column: 1 / -1;">
           <div class="card-header">
@@ -1672,10 +1673,10 @@
               <span class="cron-name">granola-daily-review</span>
               <span class="cron-schedule">in 1h (23h ago)</span>
             </div>
-            <div class="cron-item" title="Last: 50m ago" style="">
+            <div class="cron-item" title="Last: 51m ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">auto-commit-workspace</span>
-              <span class="cron-schedule">in 1h (50m ago)</span>
+              <span class="cron-schedule">in 1h (51m ago)</span>
             </div>
             <div class="cron-item" title="Never run" style="opacity: 0.7;">
               <div class="cron-health ok" style="background: var(--accent-orange);"></div>
@@ -1717,10 +1718,10 @@
               <span class="cron-name">linkedin-challenge-af...</span>
               <span class="cron-schedule">in 21h (3h ago)</span>
             </div>
-            <div class="cron-item" title="Last: 50m ago" style="">
+            <div class="cron-item" title="Last: 52m ago" style="">
               <div class="cron-health ok" style=""></div>
               <span class="cron-name">Granola Sync (6pm)</span>
-              <span class="cron-schedule">in 23h (50m ago)</span>
+              <span class="cron-schedule">in 23h (52m ago)</span>
             </div>
             <div class="cron-item" title="Never run" style="opacity: 0.7;">
               <div class="cron-health ok" style="background: var(--accent-orange);"></div>

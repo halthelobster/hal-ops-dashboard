@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-31T02:50:30.092Z",
+  "lastUpdated": "2026-01-31T02:51:51.778Z",
   "health": {
     "crons": {
       "healthy": 17,
@@ -15,15 +15,6 @@
     "active": 0
   },
   "needsJordan": [
-    {
-      "id": "gmail-api-fix",
-      "title": "Fix Gmail API Access",
-      "context": "Domain-wide delegation scopes may have been removed. Need to check Admin Console tomorrow.",
-      "priority": "P1",
-      "type": "blocker",
-      "project": "AI Stack & Tools",
-      "added": "2026-01-29"
-    },
     {
       "id": "saastr-review",
       "title": "Review & Submit SaaStr Application",
@@ -82,7 +73,7 @@
       "name": "auto-commit-workspace",
       "schedule": "in 1h",
       "health": "ok",
-      "lastRun": "50m ago",
+      "lastRun": "51m ago",
       "error": null
     },
     {
@@ -145,7 +136,7 @@
       "name": "Granola Sync (6pm)",
       "schedule": "in 23h",
       "health": "ok",
-      "lastRun": "50m ago",
+      "lastRun": "52m ago",
       "error": null
     },
     {
@@ -242,9 +233,9 @@
       "type": "main",
       "age": "just now",
       "tokenUsage": {
-        "used": "153k",
+        "used": "167k",
         "total": "200k",
-        "percent": 76
+        "percent": 84
       },
       "isActive": true
     }
@@ -372,9 +363,9 @@
   "systemStatus": {
     "clawdbotVersion": "2026.1.24-3",
     "mainSessionContext": {
-      "used": 152520,
+      "used": 167483,
       "total": 200000,
-      "percent": 76
+      "percent": 84
     },
     "memoryFileSize": 48,
     "notesFileCount": 235,
