@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-01-30T12:23:32.320Z",
+  "lastUpdated": "2026-01-31T02:50:30.092Z",
   "health": {
     "crons": {
-      "healthy": 19,
-      "total": 20,
-      "status": "warning"
+      "healthy": 17,
+      "total": 17,
+      "status": "ok"
     },
     "agents": {
-      "active": 10,
+      "active": 1,
       "idle": 0,
       "status": "ok"
     },
-    "blocked": 1,
+    "blocked": 0,
     "active": 0
   },
   "needsJordan": [
@@ -72,120 +72,92 @@
   ],
   "crons": [
     {
-      "name": "desktop-cleanup",
-      "schedule": "in 37m",
+      "name": "granola-daily-review",
+      "schedule": "in 1h",
       "health": "ok",
-      "lastRun": "-",
+      "lastRun": "23h ago",
       "error": null
     },
     {
       "name": "auto-commit-workspace",
-      "schedule": "in 2h",
+      "schedule": "in 1h",
       "health": "ok",
-      "lastRun": "23m ago",
+      "lastRun": "50m ago",
+      "error": null
+    },
+    {
+      "name": "sleep-routine",
+      "schedule": "in 4h",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "desktop-cleanup",
+      "schedule": "in 10h",
+      "health": "ok",
+      "lastRun": "14h ago",
       "error": null
     },
     {
       "name": "session-search-index",
-      "schedule": "in 2h",
+      "schedule": "in 11h",
       "health": "ok",
-      "lastRun": "-",
+      "lastRun": "13h ago",
       "error": null
     },
     {
-      "name": "yen-intervention-watch",
-      "schedule": "in 2h",
+      "name": "morning-briefing",
+      "schedule": "in 12h",
       "health": "ok",
-      "lastRun": "41m ago",
+      "lastRun": "-",
       "error": null
     },
     {
       "name": "daily-ideas",
-      "schedule": "in 5h",
-      "health": "ok",
-      "lastRun": "19h ago",
-      "error": null
-    },
-    {
-      "name": "wbd-slides-reminder",
-      "schedule": "in 5h",
-      "health": "ok",
-      "lastRun": "-",
-      "error": null
-    },
-    {
-      "name": "clawdbot-intel",
-      "schedule": "in 7h",
-      "health": "ok",
-      "lastRun": "2d ago",
-      "error": null
-    },
-    {
-      "name": "Granola Sync (Noon)",
-      "schedule": "in 8h",
-      "health": "ok",
-      "lastRun": "16h ago",
-      "error": null
-    },
-    {
-      "name": "linkedin-challenge-af...",
-      "schedule": "in 12h",
-      "health": "error",
-      "lastRun": "12h ago",
-      "error": "See cron logs"
-    },
-    {
-      "name": "Granola Sync (6pm)",
       "schedule": "in 14h",
       "health": "ok",
       "lastRun": "10h ago",
       "error": null
     },
     {
-      "name": "granola-daily-review",
+      "name": "track2-project-manager",
+      "schedule": "in 14h",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "clawdbot-intel",
       "schedule": "in 16h",
       "health": "ok",
       "lastRun": "8h ago",
       "error": null
     },
     {
-      "name": "sleep-winddown-60",
-      "schedule": "in 19h",
+      "name": "linkedin-challenge-af...",
+      "schedule": "in 21h",
       "health": "ok",
-      "lastRun": "5h ago",
+      "lastRun": "3h ago",
       "error": null
     },
     {
-      "name": "sleep-winddown-45",
-      "schedule": "in 19h",
+      "name": "Granola Sync (6pm)",
+      "schedule": "in 23h",
       "health": "ok",
-      "lastRun": "5h ago",
-      "error": null
-    },
-    {
-      "name": "sleep-winddown-30",
-      "schedule": "in 19h",
-      "health": "ok",
-      "lastRun": "5h ago",
-      "error": null
-    },
-    {
-      "name": "sleep-winddown-15",
-      "schedule": "in 20h",
-      "health": "ok",
-      "lastRun": "4h ago",
-      "error": null
-    },
-    {
-      "name": "sleep-lights-out",
-      "schedule": "in 20h",
-      "health": "ok",
-      "lastRun": "4h ago",
+      "lastRun": "50m ago",
       "error": null
     },
     {
       "name": "playmaker-signals-weekly",
       "schedule": "in 2d",
+      "health": "ok",
+      "lastRun": "-",
+      "error": null
+    },
+    {
+      "name": "track2-prompt-review",
+      "schedule": "in 7d",
       "health": "ok",
       "lastRun": "-",
       "error": null
@@ -209,6 +181,13 @@
       "schedule": "in 363d",
       "health": "ok",
       "lastRun": "2d ago",
+      "error": null
+    },
+    {
+      "name": "wbd-slides-reminder",
+      "schedule": "in 365d",
+      "health": "ok",
+      "lastRun": "10h ago",
       "error": null
     }
   ],
@@ -254,144 +233,20 @@
     "tasksCompletedThisWeek": 12,
     "ideasInBacklog": 23,
     "openLoops": 7,
-    "cronJobsTotal": 20
+    "cronJobsTotal": 17
   },
   "agents": [
-    {
-      "key": "agent:main:subagent:5e756b72-32d6-4936-8c90-602129b103f0",
-      "name": "command-center-frontend-polish",
-      "type": "subagent",
-      "age": "just now",
-      "tokenUsage": {
-        "used": "47k",
-        "total": "200k",
-        "percent": 24
-      },
-      "isActive": true
-    },
     {
       "key": "agent:main:main",
       "name": "Main session",
       "type": "main",
       "age": "just now",
       "tokenUsage": {
-        "used": "177k",
+        "used": "153k",
         "total": "200k",
-        "percent": 88
+        "percent": 76
       },
       "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:dee83cba-fc0c-4ed4-8be9-0d9fd44594fe",
-      "name": "secure-email-reader-build",
-      "type": "subagent",
-      "age": "3m",
-      "tokenUsage": null,
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:0e20de4d-bece-418b-b758-449a8ac89830",
-      "name": "command-center-life-os-v2",
-      "type": "subagent",
-      "age": "3m",
-      "tokenUsage": null,
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:eb6ff791-7b1f-4e20-983c-ec50a5432267",
-      "name": "secure-email-reader-spec",
-      "type": "subagent",
-      "age": "8m",
-      "tokenUsage": {
-        "used": "43k",
-        "total": "200k",
-        "percent": 22
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:c9ad58b0-b216-46d4-b2b9-02b408d182d0",
-      "name": "command-center-life-os-alignment",
-      "type": "subagent",
-      "age": "8m",
-      "tokenUsage": {
-        "used": "40k",
-        "total": "200k",
-        "percent": 20
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:512938d2-9f1a-43b0-bd95-49ea44e42dcb",
-      "name": "agent-orchestration-skill",
-      "type": "subagent",
-      "age": "17m",
-      "tokenUsage": {
-        "used": "41k",
-        "total": "200k",
-        "percent": 21
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:cron:1303d57b-9d7b-4ae0-98f9-7177d4819b90",
-      "name": "1303d57b-9d7b-4ae0-98f9-7177d4819b90",
-      "type": "cron",
-      "age": "23m",
-      "tokenUsage": {
-        "used": "22k",
-        "total": "200k",
-        "percent": 11
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:46234a22-0cb3-4925-b94d-303660aa6994",
-      "name": "revenue-opportunities-research",
-      "type": "subagent",
-      "age": "25m",
-      "tokenUsage": {
-        "used": "18k",
-        "total": "200k",
-        "percent": 9
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:debd52af-7d61-4f50-99ce-7a8f239af619",
-      "name": "dashboard-server-deploy",
-      "type": "subagent",
-      "age": "27m",
-      "tokenUsage": {
-        "used": "16k",
-        "total": "200k",
-        "percent": 8
-      },
-      "isActive": true
-    },
-    {
-      "key": "agent:main:subagent:053a3dde-ece6-4add-9e0a-bddc6973ad22",
-      "name": "interactive-dashboard-architect",
-      "type": "subagent",
-      "age": "30m",
-      "tokenUsage": {
-        "used": "39k",
-        "total": "200k",
-        "percent": 20
-      },
-      "isActive": false
-    },
-    {
-      "key": "agent:main:subagent:af3c1195-bcd5-4914-be88-0f7ebac454c0",
-      "name": "dashboard-builder-v3",
-      "type": "subagent",
-      "age": "53m",
-      "tokenUsage": {
-        "used": "57k",
-        "total": "200k",
-        "percent": 28
-      },
-      "isActive": false
     }
   ],
   "lifeOS": {
@@ -507,11 +362,90 @@
     "rockProgress": 0,
     "rocksCompleted": 0,
     "rocksTotal": 8,
-    "daysUntilQ1End": 60
+    "daysUntilQ1End": 59
   },
   "taskCounts": {
-    "today": 12,
+    "today": 11,
     "inbox": 2,
-    "total": 14
-  }
+    "total": 13
+  },
+  "systemStatus": {
+    "clawdbotVersion": "2026.1.24-3",
+    "mainSessionContext": {
+      "used": 152520,
+      "total": 200000,
+      "percent": 76
+    },
+    "memoryFileSize": 48,
+    "notesFileCount": 235,
+    "dailyLogsCount": 10
+  },
+  "needsYouItems": [
+    {
+      "type": "awaiting",
+      "title": "Set up Health Auto Export app",
+      "context": "Check: Action Needed",
+      "priority": "P2",
+      "source": "Action Needed",
+      "link": "Jordan's phone"
+    },
+    {
+      "type": "awaiting",
+      "title": "Approve trimmed AGENTS.md",
+      "context": "Check: Action Needed",
+      "priority": "P2",
+      "source": "Action Needed",
+      "link": "/Users/Hal/clawd/AGENTS.md.new"
+    },
+    {
+      "type": "awaiting",
+      "title": "Replied to Victoria on chronic pain post",
+      "context": "Victoria's original feedback (Jan 25) extracted to learnings",
+      "priority": "P2",
+      "source": "Whop Link Up - Writing",
+      "link": "https://whop.com/joined/linkupbyjasmin/exp_Qu1PULYdiGRmUf/app/post_1CXQrj3KtFLEZpDaqFCoqL/"
+    },
+    {
+      "type": "awaiting",
+      "title": "NEW POST: Day 1 health wake-up call",
+      "context": "Still 0 comments. ~15h since posted. Victoria typically resp",
+      "priority": "P2",
+      "source": "Whop Link Up - Writing",
+      "link": "https://whop.com/joined/linkupbyjasmin/writing-Qu1PULYdiGRmUf/app/"
+    }
+  ],
+  "awaitingResponses": [
+    {
+      "date": "2026-01-30 07:21",
+      "channel": "Action Needed",
+      "title": "Set up Health Auto Export app",
+      "type": "awaiting",
+      "whereToCheck": "Jordan's phone"
+    },
+    {
+      "date": "2026-01-30 07:20",
+      "channel": "Action Needed",
+      "title": "Approve trimmed AGENTS.md",
+      "type": "awaiting",
+      "whereToCheck": "/Users/Hal/clawd/AGENTS.md.new"
+    },
+    {
+      "date": "2026-01-29 12:35",
+      "channel": "Whop Link Up - Writing",
+      "title": "Replied to Victoria on chronic pain post",
+      "type": "awaiting",
+      "whereToCheck": "https://whop.com/joined/linkupbyjasmin/exp_Qu1PULYdiGRmUf/app/post_1CXQrj3KtFLEZpDaqFCoqL/",
+      "lastChecked": "2026-01-30 ~04:00 AM",
+      "status": "Victoria's original feedback (Jan 25) extracted to learnings"
+    },
+    {
+      "date": "2026-01-29 12:57",
+      "channel": "Whop Link Up - Writing",
+      "title": "NEW POST: Day 1 health wake-up call",
+      "type": "awaiting",
+      "whereToCheck": "https://whop.com/joined/linkupbyjasmin/writing-Qu1PULYdiGRmUf/app/",
+      "lastChecked": "2026-01-30 ~04:00 AM",
+      "status": "Still 0 comments. ~15h since posted. Victoria typically resp"
+    }
+  ]
 }
